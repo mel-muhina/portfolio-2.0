@@ -1,0 +1,101 @@
+@import "../../vars.css";
+
+.footerContainer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    color: var(--color-text);
+    font-family: var(--font-roboto);
+    margin-top: 179px;
+    padding: 0% 10% 0% 10%;
+    gap: 10px;
+    background: rgba(25, 55, 109, 1);
+        
+ 
+}
+
+.footerTitle {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+       
+}
+
+.footerDescription {
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+   
+}
+
+
+.footerList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 26px;
+    list-style: none;
+    margin-top: 10%;
+    padding-bottom: 5%;
+
+}
+.list img {
+    width: 40px;
+    padding-right: 10px;
+    margin-top: 10px;
+    
+}
+
+.liItem  {
+   display: flex;
+   align-items: center;
+   gap: 25px;
+   font-size: 1.6rem;
+  
+   
+}
+
+.liItem a {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    font-size: 1.6rem;
+    color: var(--color-text);
+
+}
+
+.liItem a:hover {
+   color:  var(--color-primary);
+}
+
+
+@media screen and (max-width: 830px) {
+    .footerContainer {
+        flex-direction: column;
+        padding: 10px;
+                
+     
+    }
+
+    .footerTitle, .footerDescription {
+        text-align: center;
+       
+    }
+    
+    .footerList  {
+       align-items: center;
+       padding: 0;
+  
+       
+        
+    }
+    .liItem a  {
+      font-size: 20px;
+      text-align: center;
+      padding-bottom: 10px;
+      margin: 0;
+    }
+
+   
+}

@@ -32,7 +32,7 @@
         "imageSrc": "adobe.png"
     },  
     {
-        "title": "Adobe Photoshop",
+        "title": "Photoshop",
         "imageSrc": "photoshop.png"
     },
     {
@@ -41,6 +41,6 @@
     },  
     {
         "title": "Git Flow",
-        "imageSrc": "git_icon.png"
+        "imageSrc": "git.png"
     }
 ]

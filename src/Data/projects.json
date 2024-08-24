@@ -5,7 +5,7 @@
       "languages": ["React", "Javascript","HTML", "CSS"],
       "demo": "https://cattree.onrender.com/",
       "source": "https://github.com/mel-muhina/CatTree",
-      "imageSrc": "cattree.jpg"
+      "imageSrc": "cattree.JPG"
    },
    {
       "title": "Timeless Advisor",
@@ -17,7 +17,7 @@
    },
    {
       "title": "Draft Banking",
-      "description": "This project focused on creating a banking app with sleek UI.",
+      "description": "This project focused on creating a banking app with sleek UI and implementing new techniques learned in React.",
       "languages": ["React", "Javascript","HTML", "CSS"],
       "demo": "https://mel-muhina.github.io/draftBanking/",
       "source": "https://github.com/mel-muhina/draftBanking",
