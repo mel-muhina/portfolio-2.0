@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from './Projects.module.css'
-import projects from '../../data/projects.json';
+import projects from '../../Data/projects.json';
 
 export const Projects = () => {
     const [project, setProject] = useState([])
