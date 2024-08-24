@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 // import { getImageUrl } from '../../utils.js';
 import styles from "./Experience.module.css";
-import skills from "../../data/skills.json";
-import history from '../../data/history.json';
+import skills from "../../Data/skills.json";
+import history from '../../Data/history.json';
 // import testImg from '../../assets/skills/css.png'
 
 
