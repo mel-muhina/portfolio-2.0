@@ -26,7 +26,7 @@ export const Projects = () => {
 
  return (
     <section className={styles.proContainer}>
-    <h2 className={styles.proTitle} id="projects">Projects</h2>
+    <h2 className={styles.proTitle} id="projects">Recent Projects</h2>
 
     <div className={styles.proContent}>
         {project.map((projectItem, id) => {

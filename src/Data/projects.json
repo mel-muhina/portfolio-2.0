@@ -1,5 +1,13 @@
 [
    {
+   "title": "Nature Connect",
+   "description": "This project was a larger group project, focusing on creating a solution for users that want to reconnect to nature. This was a more complex project created over 2 weeks.",
+   "languages": ["React", "Javascript","HTML", "CSS", "Node", "Figma"],
+   "demo": "https://www.linkedin.com/posts/melmuhina_yesterday-marked-the-end-of-my-final-project-activity-7238114837069803520-G9UO?utm_source=share&utm_medium=member_desktop",
+   "source": "https://github.com/mel-muhina/final-project-frontend/tree/dev",
+   "imageSrc": "Gaiabg.png"
+   },
+   {
       "title": "Cat Tree",
       "description": "This project focused on creating a mini react project within a 2 day time frame incorporating an API for a cat shelter.",
       "languages": ["React", "Javascript","HTML", "CSS"],
@@ -10,7 +18,7 @@
    {
       "title": "Timeless Advisor",
       "description": "This project focused on a group project within a week time frame creating a History game for secondary school students.",
-      "languages": ["Node", "SQL", "Javascript","HTML", "CSS"],
+      "languages": ["Node", "SQL", "Javascript","HTML", "CSS", "Figma"],
       "demo": "https://blizzard-client.onrender.com",
       "source": "https://github.com/mel-muhina/Blizzard",
       "imageSrc": "timelessadvisor.JPG"
@@ -38,13 +46,5 @@
    "demo": "https://mel-muhina.github.io/BluesClues/",
    "source": "https://github.com/mel-muhina/BluesClues",
    "imageSrc": "bluesclues.jpg"
-}, 
-{
-"title": "Tea Cozy",
-"description": "This is a project with certain requirements set by the client.",
-"languages": ["HTML", "CSS"],
-"demo": "https://mel-muhina.github.io/Tea-Cozy/",
-"source": "https://github.com/mel-muhina/Tea-Cozy",
-"imageSrc": "teacozy.JPG"
 }
 ]
