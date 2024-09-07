@@ -1,0 +1,18 @@
+[ 
+    {
+        "role": "Tech Trainee",
+        "organisation": "La Fosse",
+        "startDate": "July 2024",
+        "endDate": "Present",
+        "experiences": ["Frontend Development", "Project Management","Backend Development", "Fullstack development", "SQL", "React", "Javascript", "Node.js", "Docker"],
+        "imageSrc": "lafosse.png"
+    },
+    {
+        "role": "Teacher",
+        "organisation": "Various",
+        "startDate": "Sept. 2017",
+        "endDate": "July 2024",
+        "experiences": ["Project Management","Taught subjects such as:", "Computing", "Creative iMedia", "Art", "Photography", "Taught at Elementary, Secondary and University level."],
+        "imageSrc": "google.png"
+    }
+]
