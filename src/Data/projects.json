@@ -3,8 +3,8 @@
    "title": "Nature Connect",
    "description": "This project was a larger group project, focusing on creating a solution for users that want to reconnect to nature. This was a more complex project created over 2 weeks.",
    "languages": ["React", "Javascript","HTML", "CSS", "Node", "Figma"],
-   "demo": "https://www.linkedin.com/posts/melmuhina_yesterday-marked-the-end-of-my-final-project-activity-7238114837069803520-G9UO?utm_source=share&utm_medium=member_desktop",
-   "source": "https://github.com/mel-muhina/final-project-frontend/tree/dev",
+   "demo": "https://youtu.be/mMu5ECrPujM",
+   "source": "https://github.com/mel-muhina/final-project-frontend/",
    "imageSrc": "Gaiabg.png"
    },
    {
@@ -19,7 +19,7 @@
       "title": "Timeless Advisor",
       "description": "This project focused on a group project within a week time frame creating a History game for secondary school students.",
       "languages": ["Node", "SQL", "Javascript","HTML", "CSS", "Figma"],
-      "demo": "https://blizzard-client.onrender.com",
+      "demo": "https://youtu.be/REd_lRZaYTw",
       "source": "https://github.com/mel-muhina/Blizzard",
       "imageSrc": "timelessadvisor.JPG"
    },
