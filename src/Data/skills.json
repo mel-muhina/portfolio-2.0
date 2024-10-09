@@ -1,12 +1,5 @@
 [
-    {   
-        "title": "HTML",
-        "imageSrc": "html.png"
-    },
-    {
-        "title": "CSS",
-        "imageSrc": "css.png"
-    },
+   
     {
         "title": "JavaScript",
         "imageSrc": "javascript.png"
@@ -14,6 +7,10 @@
     {
         "title": "React",
         "imageSrc": "react.png"
+    }, 
+    {
+        "title": "Next.js",
+        "imageSrc": "nextjs.png"
     },
     {
         "title": "Node",
@@ -42,5 +39,18 @@
     {
         "title": "Git Flow",
         "imageSrc": "git.png"
+    },  
+    {
+        "title": "Tailwind",
+        "imageSrc": "tailwind.png"
+    },  
+   
+    {   
+        "title": "HTML",
+        "imageSrc": "html.png"
+    },
+    {
+        "title": "CSS",
+        "imageSrc": "css.png"
     }
 ]
