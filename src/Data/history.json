@@ -1,9 +1,17 @@
 [ 
+        {
+        "role": "Frontend Developer Volunteer",
+        "organisation": "Smallpeice Trust",
+        "startDate": "October 2024",
+        "endDate": "December 2024",
+        "experiences": ["Frontend Development", "NextJS", "TailwindCSS", "Figma", "Mobile-First", "Responsive", "UX/UI Design", "JavaScript", "React", "Node.js"],
+        "imageSrc": "smallpeicelogo.png"
+    },
     {
         "role": "Tech Trainee",
         "organisation": "La Fosse",
         "startDate": "July 2024",
-        "endDate": "Present",
+        "endDate": "September 2024",
         "experiences": ["Frontend Development", "Project Management","Backend Development", "Fullstack development", "SQL", "React", "Javascript", "Node.js", "Docker"],
         "imageSrc": "lafosse.png"
     },
