@@ -41,7 +41,7 @@
         "imageSrc": "git.png"
     },  
     {
-        "title": "Tailwind",
+        "title": "TailWindCSS",
         "imageSrc": "tailwind.png"
     },  
    
@@ -52,5 +52,13 @@
     {
         "title": "CSS",
         "imageSrc": "css.png"
+    },
+    {
+        "title": "Jest",
+        "imageSrc": "jest.webp"
+    },
+    {
+        "title": "Agile",
+        "imageSrc": "agile.png"
     }
 ]
