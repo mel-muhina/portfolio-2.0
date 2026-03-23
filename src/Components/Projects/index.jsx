@@ -19,7 +19,6 @@ export const Projects = () => {
 
 
         setProject(mapProjects)
-        console.log("Prohjects", mapProjects)
 
     }, [])
 

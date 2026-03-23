@@ -1,12 +1,10 @@
-.navbar, .heroContainer, .proContainer, .expContainer, .footerContainer  {
+body  {
   box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
-  font-family: "Outfit", Arial, Helvetica, sans-serif;
-  
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
-  
 }

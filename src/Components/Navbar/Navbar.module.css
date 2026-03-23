@@ -16,7 +16,6 @@
     font-weight: 600;
     text-decoration: none;
     color: var(--color-text);
-    font-family: var(--font-robot);
 }
 
 .menu {
@@ -33,7 +32,6 @@
     font-size: 25px;
     color: var(--color-text);
     text-decoration: none;
-    font-family: var(--font-robot);
     font-weight: 600;
 }
 
@@ -56,7 +54,7 @@
 
 .menu {
     position: absolute;
-    right: 0px;
+    right: 0;
     margin-right: 10%;
     flex-direction: column;
     align-items: flex-end;
@@ -86,4 +84,4 @@
         display: flex;
         z-index: 1;
     }
-};
+}

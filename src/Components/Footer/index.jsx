@@ -1,4 +1,3 @@
-import React from "react";
 import styles from './Footer.module.css'
 
 import email from "../../assets/about/emailIcon.png"
@@ -11,7 +10,7 @@ export const Footer = () => {
                         <h1 className={styles.footerTitle} id="contact">
                             Contact
                         </h1>
-                        <p className={styles.footerDescription}> Reach out to find out more!</p>
+                        <p className={styles.footerDescription}> Reach out and connect with me</p>
                         </div>
                         <div>
                         <ul className={styles.footerList}>

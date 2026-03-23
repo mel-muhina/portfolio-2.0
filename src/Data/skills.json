@@ -1,8 +1,15 @@
 [
-   
+    {
+      "title": "TypeScript",
+      "imageSrc": "typescript.svg"
+    },
     {
         "title": "JavaScript",
         "imageSrc": "javascript.png"
+    },
+    {
+      "title": "Java",
+      "imageSrc": "java.svg"
     },
     {
         "title": "React",
@@ -13,7 +20,7 @@
         "imageSrc": "nextjs.png"
     },
     {
-        "title": "Node",
+        "title": "Node.js",
         "imageSrc": "node.png"
     },
     {
@@ -56,6 +63,10 @@
     {
         "title": "Jest",
         "imageSrc": "jest.webp"
+    },
+    {
+      "title": "Cypress",
+      "imageSrc": "cypress.svg"
     },
     {
         "title": "Agile",

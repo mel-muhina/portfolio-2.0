@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 
-// import { getImageUrl } from '../../utils.js';
 import styles from "./Experience.module.css";
 import skills from "../../Data/skills.json";
 import history from '../../Data/history.json';
-// import testImg from '../../assets/skills/css.png'
 
 
 export const Experience = () => {
@@ -53,10 +51,7 @@ export const Experience = () => {
                 </div>)
                     
                     })
-
                  }
-                
-                
                 </div>
                 <ul className={styles.history}> {
                     historyItem.map((item, id) => {
@@ -66,7 +61,8 @@ export const Experience = () => {
                             <div className={styles.historyItemDetails}>
                                 <h3>{`${item.role}, ${item.organisation}`}</h3>
                                 <p>{`${item.startDate}, ${item.endDate}`}</p>
-                                <ul>
+                                <p>{item.description}</p>
+                                <ul className={styles.expTag}>
                                     {item.experiences.map((experience, id) => {
                                     return <li key={id}>{experience}</li>;
                                 })}
