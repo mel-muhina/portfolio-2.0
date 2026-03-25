@@ -1,78 +1,74 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import styles from "./Experience.module.css";
-import skills from "../../Data/skills.json";
+import styles from './Experience.module.css';
+import skills from '../../Data/skills.json';
 import history from '../../Data/history.json';
 
-
 export const Experience = () => {
-    const [skilla, setSkillsa] = useState([])
-    const [historyItem, setHistoryItem] = useState([])
+  const [skilla, setSkillsa] = useState([]);
+  const [historyItem, setHistoryItem] = useState([]);
 
-    const getImageUrl = (fileName) => {
-        return `../../skills/${fileName}`; 
-    }
+  const getImageUrl = (fileName) => {
+    return `../../skills/${fileName}`;
+  };
 
-    const getImageUrlHistory = (fileName) => {
-        return `../../history/${fileName}`; 
-    }
+  const getImageUrlHistory = (fileName) => {
+    return `../../history/${fileName}`;
+  };
 
-    useEffect(() => {
-        const urls = skills.map(skill => getImageUrl(skill.imageSrc));
-        const mapSkills = skills.map(skill => ({
-            ...skill,
-            imageSrc: getImageUrl(skill.imageSrc)
-        }))
+  useEffect(() => {
+    const urls = skills.map((skill) => getImageUrl(skill.imageSrc));
+    const mapSkills = skills.map((skill) => ({
+      ...skill,
+      imageSrc: getImageUrl(skill.imageSrc),
+    }));
 
-        const mapHistory = history.map(item => ({
-            ...item,
-            imageSrc: getImageUrlHistory(item.imageSrc)
-        }))
+    const mapHistory = history.map((item) => ({
+      ...item,
+      imageSrc: getImageUrlHistory(item.imageSrc),
+    }));
 
-        setSkillsa(mapSkills)
-        setHistoryItem(mapHistory);
+    setSkillsa(mapSkills);
+    setHistoryItem(mapHistory);
+  }, []);
 
-    }, [])
-
-
-    return (
-        <section className={styles.expContainer} id="experience">
-            <h2 className={styles.expTitle}>
-                Experience
-            </h2>
-            <div className={styles.expContent}>
-                <div className={styles.skills}>{
-                   skilla.map((skill, id) => {
-                        return (<div key={id} className={styles.skill}>
-                        <div className={styles.skillImageContainer}>
-                            <img src={skill.imageSrc} alt={skill.title} className={styles.skillimg}/> 
-                        </div>
-                            <p>{skill.title}</p>
-                </div>)
-                    
-                    })
-                 }
+  return (
+    <section className={styles.expContainer} id="experience">
+      <h2 className={styles.expTitle}>Experience</h2>
+      <div className={styles.expContent}>
+        <div className={styles.skills}>
+          {skilla.map((skill, id) => {
+            return (
+              <div key={id} className={styles.skill}>
+                <div className={styles.skillImageContainer}>
+                  <img src={skill.imageSrc} alt={skill.title} className={styles.skillimg} />
                 </div>
-                <ul className={styles.history}> {
-                    historyItem.map((item, id) => {
-                
-                        return <li key={id} className={styles.historyItem}>
-                            <img  src={item.imageSrc} alt={`${item.organisation} Logo`} />
-                            <div className={styles.historyItemDetails}>
-                                <h3>{`${item.role}, ${item.organisation}`}</h3>
-                                <p>{`${item.startDate}, ${item.endDate}`}</p>
-                                <p>{item.description}</p>
-                                <ul className={styles.expTag}>
-                                    {item.experiences.map((experience, id) => {
-                                    return <li key={id}>{experience}</li>;
-                                })}
-                                    </ul>
-                            </div>
-                        </li>
-                    })
-                        } 
-                </ul>
-            </div>
-        </section>
-    )
-}
+                <p>{skill.title}</p>
+              </div>
+            );
+          })}
+        </div>
+        <ul className={styles.history}>
+          {' '}
+          {historyItem.map((item, id) => {
+            return (
+              <li key={id} className={styles.historyItem}>
+                <img src={item.imageSrc} alt={`${item.organisation} Logo`} />
+                <div className={styles.historyItemDetails}>
+                  <h3>{`${item.role}, ${item.organisation}`}</h3>
+                  <p>{`${item.startDate} - ${item.endDate}`}</p>
+                  <p>{item.description}</p>
+                  <ul className={styles.expTag}>
+                    {item.experiences.map((experience, id) => {
+                      return <li key={id}>{experience}</li>;
+                    })}
+                  </ul>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  );
+};

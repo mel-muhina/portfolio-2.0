@@ -1,82 +1,79 @@
-@import "../../vars.css";
+@import '../../vars.css';
 
 .footerContainer {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    color: var(--color-text);
-    margin-top: 179px;
-    padding: 0 10%;
-    gap: 10px;
-    background: rgba(25, 55, 109, 1);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  color: var(--color-text);
+  margin-top: 179px;
+  padding: 0 10%;
+  gap: 10px;
+  background: rgba(19, 42, 83, 1);
 }
 
 .footerTitle {
-    font-size: 3rem;
-    font-weight: 700;
+  font-size: 3rem;
+  font-weight: 700;
 }
 
 .footerDescription {
-    font-size: 1.8rem;
-    font-weight: 400;
-    letter-spacing: 1.1px;
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 0.65px;
 }
-
 
 .footerList {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 26px;
-    list-style: none;
-    margin-top: 10%;
-    padding-bottom: 5%;
-
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 26px;
+  list-style: none;
+  margin-top: 10%;
+  padding-bottom: 5%;
 }
 .list img {
-    width: 40px;
-    padding-right: 10px;
-    margin-top: 10px;
+  width: 40px;
+  padding-right: 10px;
+  margin-top: 10px;
 }
 
-.liItem  {
-   display: flex;
-   align-items: center;
-   gap: 25px;
+.liItem {
+  display: flex;
+  align-items: center;
+  gap: 25px;
 }
 
 .liItem a {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    font-size: 1.4rem;
-    color: var(--color-text);
-
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  font-size: 1.4rem;
+  color: var(--color-text);
+  font-weight: 500;
 }
 
 .liItem a:hover {
-   color:  var(--color-primary);
+  color: var(--color-link-hover);
 }
 
-
 @media screen and (max-width: 830px) {
-    .footerContainer {
-        flex-direction: column;
-    }
+  .footerContainer {
+    flex-direction: column;
+  }
 
-    .footerTitle, .footerDescription {
-        text-align: center;
-    }
+  .footerTitle,
+  .footerDescription {
+    text-align: center;
+  }
 
-    .footerList  {
-       align-items: center;
-       padding: 0;
-
-    }
-    .liItem a  {
-      text-align: center;
-      padding-bottom: 10px;
-      margin: 0;
-    }
+  .footerList {
+    align-items: center;
+    padding: 0;
+  }
+  .liItem a {
+    text-align: center;
+    padding-bottom: 10px;
+    margin: 0;
+  }
 }

@@ -1,138 +1,138 @@
-@import "../../vars.css";
+@import '../../vars.css';
 
 .expContainer {
-    color: var(--color-text);
-    margin: 5% 10% 0;
+  color: var(--color-text);
+  margin: 5% 10% 0;
 }
 
 .expTitle {
-    color: var(--color-text);
-    font-size: 35px;
-    font-weight: 700;
-    letter-spacing: 1.75px;
-    text-transform: uppercase;
-    padding: 50px 20px;
+  color: var(--color-text);
+  font-size: 35px;
+  font-weight: 700;
+  letter-spacing: 1.75px;
+  text-transform: uppercase;
+  padding: 50px 20px;
 }
 
 .skillimg {
-    width: 4vh;
-    height: 4vh;
+  width: 4vh;
+  height: 4vh;
 }
 
 .expContent {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
 .skills {
-    margin-top: 20px;
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 5px;
-    text-align: center;
+  margin-top: 20px;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 5px;
+  text-align: center;
 }
 
 .skill {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .skillImageContainer {
-    background-color: var(--color-secondary);
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
+  background-color: rgba(113, 115, 227, 0.42);
+
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
 }
 
 .skill p {
-    font-size: 18px;
-    font-weight: 500;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .history {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .historyItem {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 20px;
-    background: linear-gradient(90deg, #19376d 0%, rgba(25, 55, 109, 0) 100%);
-    border-radius: 10px;
-    padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  background: linear-gradient(90deg, rgba(113, 115, 227, 0.42) 0%, rgba(227, 33, 33, 0) 100%);
+  border-radius: 10px;
+  padding: 20px;
 }
 
 .historyItem img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    flex-shrink: 0;
-    background-color: #ffffff;
-    padding: 2px;
-    border-radius: 30px;
-    box-sizing: border-box;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  flex-shrink: 0;
+  background-color: #ffffff;
+  padding: 2px;
+  border-radius: 30px;
+  box-sizing: border-box;
 }
 
 .historyItemDetails h3 {
-    font-size: 26px;
-    font-weight: 600;
-    margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
 }
 
 .historyItemDetails ul {
-    list-style-position: inside;
-    font-size: 20px;
-    list-style-type: disc;
-    padding: 0;
-    margin: 0;
+  list-style-position: inside;
+  font-size: 20px;
+  list-style-type: disc;
+  padding: 0;
+  margin: 0;
 }
 
 .expTag {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 8px;
 }
 
 .expTag li {
-    background: rgb(13, 31, 57);
-    color: var(--color-text);
-    border-radius: 8px;
-    padding: 5px 15px;
-    list-style: none;
+  background: rgb(13, 31, 57);
+  color: var(--color-text);
+  border-radius: 8px;
+  padding: 5px 15px;
+  list-style: none;
 }
 
 @media screen and (max-width: 830px) {
-    .expContainer {
-        margin: 2vw;
-    }
+  .expContainer {
+    margin: 2vw;
+  }
 
-    .expTitle {
-        text-align: center;
-        padding: 40px 0 20px;
-    }
+  .expTitle {
+    text-align: center;
+    padding: 40px 0 20px;
+  }
 
-    .expContent {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 0;
-    }
+  .expContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0;
+  }
 
-    .history {
-        padding: 0;
-    }
+  .history {
+    padding: 0;
+  }
 
-    .skills {
-        justify-items: center;
-
-    }
+  .skills {
+    justify-items: center;
+  }
 }

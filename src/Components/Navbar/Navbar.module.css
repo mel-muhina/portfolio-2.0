@@ -1,58 +1,60 @@
-@import "../../vars.css";
+@import '../../vars.css';
 
 .navbar {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 61px;
-    z-index: 2;
-    margin: 0 10%;
-    
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 61px;
+  z-index: 2;
+  margin: 0 10%;
 }
 
 .websiteTitle {
-    font-size: 30px;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--color-text);
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.95px;
+  text-decoration: none;
+  color: var(--color-text);
+
+  &:hover {
+    color: var(--color-link-hover);
+  }
 }
 
 .menu {
-    display: flex;
+  display: flex;
 }
 
 .menuItems {
-    display: flex;
-    gap: 47px;
-    list-style: none;
+  display: flex;
+  gap: 47px;
+  list-style: none;
 }
 
 .menuItems a {
-    font-size: 25px;
-    color: var(--color-text);
-    text-decoration: none;
-    font-weight: 600;
+  font-size: 25px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .menuItems a:hover {
-    color:  var(--color-primary);
-    font-weight: 600;
-
+  color: var(--color-link-hover);
+  font-weight: 600;
 }
 
 .menuBtn {
-    display: none;
+  display: none;
 }
 
 @media screen and (max-width: 830px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-
-.menu {
+  .menu {
     position: absolute;
     right: 0;
     margin-right: 10%;
@@ -60,28 +62,27 @@
     align-items: flex-end;
     gap: 11px;
     z-index: 3;
-}
+  }
 
-.menuBtn {
+  .menuBtn {
     display: block;
     cursor: pointer;
-   
-    }
+  }
 
-    .menuItems {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        gap: 13px;
-        border-radius: 10px;
-        background: rgb(25, 55, 109);
-        background: linear-gradient(0deg, rgba(25,55,109,0.2) 0%, rgba(25,55,109, 1) 100%);
-        padding: 24px 33px;
-        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
-    }
+  .menuItems {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
+    border-radius: 10px;
+    background: rgb(25, 55, 109);
+    background: linear-gradient(0deg, rgba(25, 55, 109, 0.2) 0%, rgba(25, 55, 109, 1) 100%);
+    padding: 24px 33px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+  }
 
-    .menuOpen {
-        display: flex;
-        z-index: 1;
-    }
+  .menuOpen {
+    display: flex;
+    z-index: 1;
+  }
 }

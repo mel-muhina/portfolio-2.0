@@ -1,75 +1,75 @@
 [
-    {
-      "title": "TypeScript",
-      "imageSrc": "typescript.svg"
-    },
-    {
-        "title": "JavaScript",
-        "imageSrc": "javascript.png"
-    },
-    {
-      "title": "Java",
-      "imageSrc": "java.svg"
-    },
-    {
-        "title": "React",
-        "imageSrc": "react.png"
-    }, 
-    {
-        "title": "Next.js",
-        "imageSrc": "nextjs.png"
-    },
-    {
-        "title": "Node.js",
-        "imageSrc": "node.png"
-    },
-    {
-        "title": "Figma",
-        "imageSrc": "figma.png"
-    },
-    {
-        "title": "Redux",
-        "imageSrc": "redux.png"
-    },
-    {
-        "title": "Adobe Suite",
-        "imageSrc": "adobe.png"
-    },  
-    {
-        "title": "Photoshop",
-        "imageSrc": "photoshop.png"
-    },
-    {
-        "title": "SQL",
-        "imageSrc": "sql.png"
-    },  
-    {
-        "title": "Git Flow",
-        "imageSrc": "git.png"
-    },  
-    {
-        "title": "TailWindCSS",
-        "imageSrc": "tailwind.png"
-    },  
-   
-    {   
-        "title": "HTML",
-        "imageSrc": "html.png"
-    },
-    {
-        "title": "CSS",
-        "imageSrc": "css.png"
-    },
-    {
-        "title": "Jest",
-        "imageSrc": "jest.webp"
-    },
-    {
-      "title": "Cypress",
-      "imageSrc": "cypress.svg"
-    },
-    {
-        "title": "Agile",
-        "imageSrc": "agile.png"
-    }
+  {
+    "title": "TypeScript",
+    "imageSrc": "typescript.svg"
+  },
+  {
+    "title": "JavaScript",
+    "imageSrc": "javascript.png"
+  },
+  {
+    "title": "Java",
+    "imageSrc": "java.svg"
+  },
+  {
+    "title": "React",
+    "imageSrc": "react.png"
+  },
+  {
+    "title": "Next.js",
+    "imageSrc": "nextjs.png"
+  },
+  {
+    "title": "Node.js",
+    "imageSrc": "node.png"
+  },
+  {
+    "title": "Figma",
+    "imageSrc": "figma.png"
+  },
+  {
+    "title": "Redux",
+    "imageSrc": "redux.png"
+  },
+  {
+    "title": "Adobe Suite",
+    "imageSrc": "adobe.png"
+  },
+  {
+    "title": "Photoshop",
+    "imageSrc": "photoshop.png"
+  },
+  {
+    "title": "SQL",
+    "imageSrc": "sql.png"
+  },
+  {
+    "title": "Git Flow",
+    "imageSrc": "git.png"
+  },
+  {
+    "title": "TailWindCSS",
+    "imageSrc": "tailwind.png"
+  },
+
+  {
+    "title": "HTML",
+    "imageSrc": "html.png"
+  },
+  {
+    "title": "CSS | SCSS",
+    "imageSrc": "css.png"
+  },
+  {
+    "title": "Jest",
+    "imageSrc": "jest.webp"
+  },
+  {
+    "title": "Cypress",
+    "imageSrc": "cypress.svg"
+  },
+  {
+    "title": "Agile",
+    "imageSrc": "agile.png"
+  }
 ]

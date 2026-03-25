@@ -3,9 +3,21 @@
     "role": "Software Engineer",
     "organisation": "Ford Credit",
     "startDate": "January 2025",
-    "endDate": "Current",
+    "endDate": "Present",
     "description": "",
-    "experiences": ["Frontend Development", "Backend Development", "TailwindCSS", "SCSS", "Figma", "Java", "Typescript", "React", "Node.js", "GCP", "GraphQL"],
+    "experiences": [
+      "Frontend Development",
+      "Backend Development",
+      "TailwindCSS",
+      "SCSS",
+      "Figma",
+      "Java",
+      "TypeScript",
+      "React",
+      "Node.js",
+      "GCP",
+      "GraphQL"
+    ],
     "imageSrc": "Ford.webp"
   },
   {
@@ -14,7 +26,19 @@
     "startDate": "October 2024",
     "endDate": "December 2024",
     "description": "",
-    "experiences": ["Frontend Development", "NextJS", "TailwindCSS", "Figma", "Mobile-First", "Responsive", "UX/UI Design", "JavaScript", "React", "Node.js"],
+    "experiences": [
+      "Frontend Development",
+      "NextJS",
+      "TailwindCSS",
+      "Figma",
+      "SCSS",
+      "Mobile-First",
+      "Responsive",
+      "UX/UI Design",
+      "JavaScript",
+      "React",
+      "Node.js"
+    ],
     "imageSrc": "smallpeice.png"
   },
   {
@@ -23,7 +47,19 @@
     "startDate": "July 2024",
     "endDate": "September 2024",
     "description": "",
-    "experiences": ["Frontend Development", "Project Management","Backend Development", "Fullstack development", "SQL", "React", "Javascript", "Node.js", "Docker"],
+    "experiences": [
+      "Frontend Development",
+      "Project Management",
+      "CSS",
+      "HTML",
+      "Backend Development",
+      "Fullstack development",
+      "SQL",
+      "React",
+      "JavaScript",
+      "Node.js",
+      "Docker"
+    ],
     "imageSrc": "LaFosse.jpeg"
   }
 ]

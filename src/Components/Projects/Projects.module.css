@@ -1,124 +1,134 @@
-@import "../../vars.css";
-
+@import '../../vars.css';
 
 .proContainer {
-    color: var(--color-text);
-    padding: 4vw;
+  color: var(--color-text);
+  padding: 4vw;
 }
 
 .Img {
-    height: 35vh;
-    object-fit: cover;
+  height: 35vh;
+  object-fit: cover;
 }
 
 .proTitle {
-    color: var(--color-text);
-    font-size: 35px;
-    font-weight: 700;
-    letter-spacing: 1.75px;
-    text-transform: uppercase;
-    padding: 40px 130px;
+  color: var(--color-text);
+  font-size: 35px;
+  font-weight: 700;
+  letter-spacing: 1.75px;
+  text-transform: uppercase;
+  padding: 40px 130px;
 }
 
 .proContent {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    justify-content: center;
-   }
-
-.proContent img {
-    border-radius: 10px;
-    width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-content: center;
 }
 
+.proContent img {
+  border-radius: 10px;
+  width: 100%;
+}
 
 .projectItem {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: #19376d;
-    background: linear-gradient(180deg, rgba(87, 108, 188, 1) 0%, rgba(19, 42, 83, 1) 50%);
-    border-radius: 10px;
-    padding: 15px;
-    font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #19376d;
+  background: linear-gradient(180deg, rgba(87, 108, 188, 1) 0%, rgba(19, 42, 83, 1) 50%);
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 25px;
+}
+
+.projectItemDetails {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .projectItemDetails h3 {
-    font-size: 22px;
-    font-weight: 700;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
 }
 
 .languages {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    font-size: 1.2rem;
-    margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .languages p {
-    background: rgb(13, 31, 57);
-    color: var(--color-text);
-    border-radius: 8px;
-    padding: 5px 15px;
-    margin: 0;
+  background: rgb(13, 31, 57);
+  color: var(--color-text);
+  border-radius: 8px;
+  padding: 5px 25px;
+  margin: 0;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 button {
-    font-size: 22px;
-    border-radius: 30px;
-    border: none;
-    margin: 4px;
-    padding: 10px 50px;
-    background-color: var(--color-primary);
-    color: var(--color-text);
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
-    background-image: linear-gradient(90deg, rgba(165, 215, 232, 0.42) 0%, rgba(255, 255, 255, 0) 100%);
-    background-size: 0 100%;
-    background-repeat: no-repeat;
-    transition: 0.4s;
-    text-decoration: none;
+  font-size: 22px;
+  border-radius: 30px;
+  border: none;
+  margin: 6px;
+  padding: 15px 50px;
+  width: 45%;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+  background-image: linear-gradient(
+    90deg,
+    rgba(165, 215, 232, 0.42) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 0 100%;
+  background-repeat: no-repeat;
+  transition: 0.4s;
+  text-decoration: none;
+  font-weight: 600;
 
-    @media (max-width: 1287px) {
-        width: 100%;
-    }
+  @media (max-width: 1287px) {
+    width: 100%;
+  }
 }
 
 button:hover {
-    background-size: 100% 100%;
-    text-decoration: none;
-    cursor: pointer;
+  background-size: 100% 100%;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 button:active {
-    background-color: rgba(25, 55, 109, 1);
-    text-decoration: none;
-    
+  background-color: rgba(25, 55, 109, 1);
+  text-decoration: none;
 }
 
 @media screen and (max-width: 1024px) {
-    .proContent {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .proContent {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media screen and (max-width: 830px) {
-    .proContainer {
-        padding: 2vw;
-        margin: 0;
-    }
+  .proContainer {
+    padding: 2vw;
+    margin: 0;
+  }
 
-    .proTitle {
-        text-align: center;
-        padding: 30px 10px;
-    }
+  .proTitle {
+    text-align: center;
+    padding: 30px 10px;
+  }
 
-    .proContent {
-        grid-template-columns: 1fr;
-    }
+  .proContent {
+    grid-template-columns: 1fr;
+  }
 }
