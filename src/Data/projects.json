@@ -1,5 +1,13 @@
 [
   {
+    "title": "PawPrint",
+    "description": "Collaboration with a data engineer who created a machine learning model to predict the breed of a dog from an image. I created the design, frontend, backend and database.",
+    "languages": ["React", "TypeScript", "Java", "CSS / SCSS", "Figma", "ML"],
+    "demo": "https://youtu.be/ee2a17kVje0",
+    "source": "https://github.com/mel-muhina/pawprint",
+    "imageSrc": "pawprint.webp"
+  },
+  {
     "title": "Smallpeice Engineer",
     "description": "This was a two month volunteering project for Smallpeice Trust. The aim was to make a mobile-first app to aid 16-18 year olds with potential engineering careers. ",
     "languages": ["React", "JavaScript", "NextJS", "CSS / SCSS", "TailWindCSS", "Figma"],
@@ -38,13 +46,5 @@
     "demo": "https://mel-muhina.github.io/draftBanking/",
     "source": "https://github.com/mel-muhina/draftBanking",
     "imageSrc": "draftbanking.jpg"
-  },
-  {
-    "title": "Beauty Begins",
-    "description": "A project created focusing on the design for a makeup artist, focusing on clean UI and responsive design.",
-    "languages": ["HTML", "CSS / SCSS", "Responsive", "Figma"],
-    "demo": "https://mel-muhina.github.io/BeautyBegins",
-    "source": "https://github.com/mel-muhina/BeautyBegins",
-    "imageSrc": "beautybeginsscreen.jpg"
   }
 ]
