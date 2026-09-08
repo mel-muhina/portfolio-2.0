@@ -9,11 +9,15 @@
   },
   {
     "title": "Java",
-    "imageSrc": "java.svg"
+    "imageSrc": "java.webp"
+  },
+  {
+    "title": "Python",
+    "imageSrc": "python.webp"
   },
   {
     "title": "React",
-    "imageSrc": "react.png"
+    "imageSrc": "react.webp"
   },
   {
     "title": "Next.js",
@@ -24,12 +28,44 @@
     "imageSrc": "node.png"
   },
   {
+    "title": "FastAPI",
+    "imageSrc": "fastapi.png"
+  },
+  {
+    "title": "Spring Boot",
+    "imageSrc": "springboot.webp"
+  },
+  {
+    "title": "Redux",
+    "imageSrc": "redux.webp"
+  },
+  {
     "title": "Figma",
     "imageSrc": "figma.png"
   },
   {
-    "title": "Redux",
-    "imageSrc": "redux.png"
+    "title": "WebSockets",
+    "imageSrc": "webSocket.webp"
+  },
+  {
+    "title": "MQTT",
+    "imageSrc": "mqtt.webp"
+  },
+  {
+    "title": "JFrog Artifactory",
+    "imageSrc": "jfrog.webp"
+  },
+  {
+    "title": "SonarQube",
+    "imageSrc": "sonarqube.webp"
+  },
+  {
+    "title": "Postman",
+    "imageSrc": "postman.webp"
+  },
+  {
+    "title": "Firebase",
+    "imageSrc": "firebase.webp"
   },
   {
     "title": "Adobe Suite",
@@ -40,8 +76,8 @@
     "imageSrc": "photoshop.png"
   },
   {
-    "title": "SQL",
-    "imageSrc": "sql.png"
+    "title": "PostgresSQL",
+    "imageSrc": "Postgresql.webp"
   },
   {
     "title": "Git Flow",
@@ -67,6 +103,10 @@
   {
     "title": "Cypress",
     "imageSrc": "cypress.svg"
+  },
+  {
+    "title": "Playwright",
+    "imageSrc": "playwright.webp"
   },
   {
     "title": "Agile",

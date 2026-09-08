@@ -9,8 +9,8 @@ export const Hero = () => {
         <h1 className={styles.herotitle}>Hi, I'm Mel!</h1>
         <p className={styles.herodescription}>
           Former teacher turned <b>Software Engineer</b> that specialises in{' '}
-          <b>fullstack development</b>. My main tech stack includes <b>Java</b>, <b>Typescript</b>{' '}
-          and <b>React</b>, but I love learning new tools and languages.
+          <b>fullstack development</b>. My main tech stack includes <b>Java</b>, <b>Python</b> and <b>Node.js</b> for the backend, <b>Typescript</b>{' '}
+          and <b>React</b> for the frontend.
         </p>
         <a className={styles.herocontactBtn} href="mailto:mel.muhina@gmail.com">
           {' '}

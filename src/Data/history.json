@@ -1,22 +1,46 @@
 [
   {
     "role": "Software Engineer",
-    "organisation": "Ford Credit",
-    "startDate": "January 2025",
+    "organisation": "UCL",
+    "startDate": "May 2026",
     "endDate": "Present",
     "description": "",
     "experiences": [
-      "Frontend Development",
-      "Backend Development",
+      "Fullstack Development",
+      "Python",
+      "FastAPI",
+      "TypeScript",
+      "React",
+      "AWS",
+      "Azure",
+      "CI/CD",
+      "Git Actions",
+      "Terraform",
+      "Docker",
+      "Jest",
+      "Playwright"
+    ],
+    "imageSrc": "ucl.jpg"
+  },
+  {
+    "role": "Software Engineer",
+    "organisation": "Ford Credit",
+    "startDate": "January 2025",
+    "endDate": "April 2026",
+    "description": "",
+    "experiences": [
+      "Fullstack Development",
       "TailwindCSS",
       "SCSS",
       "Figma",
       "Java",
+      "Spring Boot",
       "TypeScript",
       "React",
-      "Node.js",
       "GCP",
-      "GraphQL"
+      "GraphQL",
+      "Gherkin",
+      "Cypress"
     ],
     "imageSrc": "Ford.webp"
   },
