@@ -1,12 +1,27 @@
 :root {
-  /* Colors */
-  --color-text: #fff;
-  --color-primary: #7173e3;
-  --color-link-hover: #8082ff;
-  --color-secondary: #19376d;
-  --color-bg: #04152d;
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.78);
+  --color-text-dim: rgba(255, 255, 255, 0.55);
+  --color-primary-glow: rgba(70, 78, 148, 0.4);
+  --color-bg: #212455;
+  --color-bg-dark: #0b0c20;
+  --color-bg-card: rgba(255, 255, 255, 0.06);
+  --color-border: rgba(255, 255, 255, 0.16);
+  --color-border-hover: rgba(255, 255, 255, 0.38);
+  --color-link-hover: #98a2f0;
+
+  /* Frosted Glass */
+  --glass-bg: rgba(18, 20, 48, 0.52);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-blur: blur(20px);
 
   /* Fonts */
-  --font-roboto: 'Roboto';
-  --font-outfit: 'Outfit';
+  --font-roboto: 'Roboto', sans-serif;
+  --font-outfit: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-cursive: 'Dancing Script', cursive;
+  --font-sans: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.2, 0, 0, 1);
 }

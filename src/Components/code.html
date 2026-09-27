@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Alex Vance // Senior Full-Stack Engineer — Architecture &amp; Systems</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    /* CSS Reset & Variables */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-midnight: #090814;
+      --bg-glass-nav: rgba(16, 15, 34, 0.68);
+      --bg-glass-card: rgba(22, 20, 44, 0.52);
+      --bg-glass-elevated: rgba(30, 27, 62, 0.65);
+      --bg-glass-pill: rgba(255, 255, 255, 0.05);
+      --bg-glass-input: rgba(13, 12, 28, 0.7);
+
+      --border-glass: rgba(255, 255, 255, 0.09);
+      --border-glass-bright: rgba(210, 187, 255, 0.28);
+      --border-glow-amber: rgba(255, 188, 114, 0.35);
+
+      --color-primary: #d2bbff;
+      --color-primary-container: #7c3aed;
+      --color-primary-glow: rgba(124, 58, 237, 0.45);
+      --color-secondary: #ffbc72;
+      --color-secondary-bright: #ffaa26;
+      --color-secondary-glow: rgba(255, 188, 114, 0.38);
+
+      --color-surface: #121220;
+      --color-text-main: #f5f3ff;
+      --color-text-muted: #b3acc2;
+      --color-text-dim: #7d758f;
+      --color-status-green: #34d399;
+
+      --font-display: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Geist', 'JetBrains Mono', monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-pill: 9999px;
+    }
+
+    body {
+      background-color: var(--bg-midnight);
+      color: var(--color-text-main);
+      font-family: var(--font-display);
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      selection-background-color: var(--color-primary-container);
+    }
+
+    ::selection {
+      background: var(--color-primary-container);
+      color: #ffffff;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Ambient Glow Cosmos Background */
+    .cosmic-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .cosmic-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.55;
+      animation: floatOrb 22s infinite alternate ease-in-out;
+    }
+
+    .orb-violet-1 {
+      width: 620px;
+      height: 620px;
+      top: -120px;
+      left: 10%;
+      background: radial-gradient(circle, #7c3aed 0%, rgba(99, 102, 241, 0.3) 60%, transparent 80%);
+    }
+
+    .orb-amber-1 {
+      width: 540px;
+      height: 540px;
+      top: 180px;
+      right: 5%;
+      background: radial-gradient(circle, #f59e0b 0%, rgba(217, 119, 6, 0.25) 50%, transparent 80%);
+      opacity: 0.35;
+      animation-duration: 26s;
+    }
+
+    .orb-indigo-2 {
+      width: 780px;
+      height: 780px;
+      top: 48%;
+      left: -180px;
+      background: radial-gradient(circle, #4f46e5 0%, rgba(124, 58, 237, 0.2) 65%, transparent 85%);
+      opacity: 0.4;
+    }
+
+    .orb-amber-2 {
+      width: 680px;
+      height: 680px;
+      bottom: 600px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(255, 188, 114, 0.35) 0%, rgba(124, 58, 237, 0.15) 60%, transparent 85%);
+    }
+
+    .orb-subtle-mesh {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 64px 64px;
+      opacity: 0.6;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(45px) translateX(30px) scale(1.08); }
+      100% { transform: translateY(-30px) translateX(-20px) scale(0.95); }
+    }
+
+    /* Page Container */
+    .app-viewport {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content-constraint {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Floating Frosted Glass Header */
+    .glass-header-shell {
+      position: fixed;
+      top: 1rem;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding: 0 1.25rem;
+      pointer-events: none;
+    }
+
+    .glass-navbar {
+      pointer-events: auto;
+      width: 100%;
+      max-width: 1200px;
+      height: 68px;
+      background: var(--bg-glass-nav);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border-glass-bright);
+      border-radius: var(--radius-xl);
+      box-shadow: 
+        0 20px 40px -15px rgba(0, 0, 0, 0.6),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 1px 0 rgba(124, 58, 237, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.75rem;
+      transition: all 0.3s ease;
+    }
+
+    .brand-cluster {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.4), rgba(255, 188, 114, 0.3));
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--color-text-main);
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--color-primary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .nav-links-deck {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(10, 8, 22, 0.45);
+      padding: 0.35rem 0.6rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-pill {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      padding: 0.4rem 0.95rem;
+      border-radius: var(--radius-pill);
+      transition: all 0.2s ease;
+    }
+
+    .nav-pill:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-pill.active {
+      color: #ffffff;
+      background: var(--color-primary-container);
+      box-shadow: 0 0 16px -2px var(--color-primary-glow);
+    }
+
+    .nav-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, var(--color-secondary-bright), var(--color-secondary));
+      color: #2b1500;
+      font-weight: 700;
+      font-size: 0.875rem;
+      box-shadow: 0 0 24px -4px var(--color-secondary-glow);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .nav-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 32px 0 var(--color-secondary-glow);
+      filter: brightness(1.05);
+    }
+
+    /* HERO SECTION with Multi-layered Frosted Aura */
+    .hero-space {
+      padding-top: 8.5rem;
+      padding-bottom: 4.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+    }
+
+    .hero-intro {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .status-capsule {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #34d399;
+      box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.35);
+      backdrop-filter: blur(8px);
+    }
+
+    .green-radiant-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-status-green);
+      box-shadow: 0 0 10px var(--color-status-green);
+      animation: pulseGreen 2.2s infinite ease-in-out;
+    }
+
+    @keyframes pulseGreen {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.45; }
+    }
+
+    .hero-title-group h1 {
+      font-size: clamp(3.2rem, 5.8vw, 4.85rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.98;
+      color: #ffffff;
+      margin-bottom: 0.85rem;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.35rem, 2.3vw, 1.95rem);
+      line-height: 1.3;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #f1edff;
+    }
+
+    .grad-text {
+      background: linear-gradient(135deg, #ffffff 25%, #d2bbff 65%, #ffbc72 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-body-para {
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: var(--color-text-muted);
+      max-width: 620px;
+    }
+
+    .hero-body-para strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .hero-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn-radiant-amber {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, #ffaa26, #ff9e0b);
+      color: #261300;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: var(--radius-md);
+      box-shadow: 0 0 28px -3px var(--color-secondary-glow);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-radiant-amber:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 38px 4px var(--color-secondary-glow);
+      filter: brightness(1.08);
+    }
+
+    .btn-glass-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--bg-glass-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-glass-bright);
+      box-shadow: 0 10px 24px -10px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      transition: all 0.25s ease;
+    }
+
+    .btn-glass-secondary:hover {
+      background: var(--bg-glass-elevated);
+      border-color: var(--color-primary);
+      box-shadow: 0 0 24px -4px var(--color-primary-glow);
+      transform: translateY(-2px);
+    }
+
+    /* Character Mascot & Frosted Aura Showcase */
+    .character-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 480px;
+    }
+
+    .stage-aura-panel {
+      position: absolute;
+      width: 95%;
+      height: 95%;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(145deg, rgba(35, 28, 77, 0.4) 0%, rgba(16, 14, 38, 0.75) 100%);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(210, 187, 255, 0.22);
+      box-shadow: 
+        0 30px 60px -15px rgba(0, 0, 0, 0.8),
+        inset 0 1px 2px rgba(255, 255, 255, 0.25),
+        inset 0 -1px 2px rgba(124, 58, 237, 0.3);
+      z-index: 1;
+    }
+
+    .stage-radial-bloom {
+      position: absolute;
+      inset: -15px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.48) 0%, rgba(255, 188, 114, 0.2) 42%, transparent 70%);
+      filter: blur(50px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .character-cutout-img {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 20px 45px rgba(124, 58, 237, 0.45));
+      display: block;
+      transform: scale(1.04);
+      transition: transform 0.4s ease;
+    }
+
+    .character-stage:hover .character-cutout-img {
+      transform: scale(1.07) translateY(-4px);
+    }
+
+    /* Floating Micro-Chips */
+    .glass-micro-chip {
+      position: absolute;
+      z-index: 4;
+      background: rgba(18, 16, 39, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass-bright);
+      padding: 0.55rem 0.95rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #ffffff;
+      animation: chipHover 5s infinite alternate ease-in-out;
+    }
+
+    .chip-top-left {
+      top: 12%;
+      left: -4%;
+    }
+
+    .chip-bottom-right {
+      bottom: 14%;
+      right: -4%;
+      animation-delay: -2.5s;
+    }
+
+    .chip-bottom-left {
+      bottom: 6%;
+      left: 6%;
+      animation-delay: -1.2s;
+    }
+
+    .chip-icon-box {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chip-icon-box.violet {
+      background: rgba(124, 58, 237, 0.3);
+      color: var(--color-primary);
+    }
+
+    .chip-icon-box.amber {
+      background: rgba(255, 188, 114, 0.25);
+      color: var(--color-secondary);
+    }
+
+    .chip-icon-box.green {
+      background: rgba(52, 211, 153, 0.2);
+      color: #34d399;
+    }
+
+    @keyframes chipHover {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+
+    /* VERIFIED ENGINEERING ARSENAL RACK */
+    .arsenal-rack-shell {
+      margin-top: 1.5rem;
+      background: var(--bg-glass-card);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border-glass-bright);
+      border-radius: var(--radius-xl);
+      padding: 2rem 2.25rem;
+      box-shadow: 
+        0 24px 50px -20px rgba(0, 0, 0, 0.7),
+        inset 0 1px 1px rgba(255, 255, 255, 0.15),
+        inset 0 -1px 1px rgba(124, 58, 237, 0.2);
+    }
+
+    .arsenal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .eyebrow-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .eyebrow-amber {
+      color: var(--color-secondary);
+    }
+
+    .arsenal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .arsenal-col-header {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .arsenal-badge-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .frosted-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-pill);
+      color: #e2dcfa;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s ease;
+      cursor: default;
+    }
+
+    .frosted-badge:hover {
+      background: rgba(124, 58, 237, 0.18);
+      border-color: var(--color-primary);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
+    }
+
+    .badge-amber-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-secondary);
+      box-shadow: 0 0 8px var(--color-secondary);
+    }
+
+    /* SECTION SCAFFOLDING */
+    .portfolio-section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.8vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      line-height: 1.15;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--color-text-muted);
+      max-width: 680px;
+      line-height: 1.65;
+    }
+
+    /* Filter Bar */
+    .glass-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .filter-chip-btn {
+      background: var(--bg-glass-card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-glass);
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      padding: 0.5rem 1.1rem;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .filter-chip-btn:hover {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .filter-chip-btn.active {
+      background: var(--color-primary-container);
+      border-color: var(--color-primary);
+      color: #ffffff;
+      box-shadow: 0 0 20px -3px var(--color-primary-glow);
+    }
+
+    /* BENTO GRID (Glassmorphism Tier 1) */
+    .glass-bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.75rem;
+    }
+
+    .glass-card {
+      background: var(--bg-glass-card);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border-glass-bright);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      box-shadow: 
+        0 24px 50px -15px rgba(0, 0, 0, 0.65),
+        inset 0 1px 1px rgba(255, 255, 255, 0.16);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 140px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-primary), transparent);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(210, 187, 255, 0.45);
+      transform: translateY(-4px);
+      box-shadow: 
+        0 30px 65px -15px rgba(0, 0, 0, 0.8),
+        0 0 35px -8px var(--color-primary-glow),
+        inset 0 1px 2px rgba(255, 255, 255, 0.25);
+    }
+
+    .card-full-span {
+      grid-column: span 12;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2.75rem;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .card-full-span {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+      }
+    }
+
+    .card-half-span {
+      grid-column: span 6;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    @media (max-width: 868px) {
+      .card-half-span {
+        grid-column: span 12;
+        padding: 2rem;
+      }
+    }
+
+    .proj-meta-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .proj-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .proj-desc {
+      font-size: 0.95rem;
+      line-height: 1.68;
+      color: var(--color-text-muted);
+    }
+
+    .proj-metrics-trio {
+      display: flex;
+      gap: 1.5rem;
+      margin: 1.35rem 0;
+      padding: 1rem 1.25rem;
+      background: rgba(10, 8, 22, 0.65);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .metric-sub-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .metric-value {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-secondary);
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      color: var(--color-text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .proj-footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn-action-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: linear-gradient(135deg, #ffaa26, #ff9e0b);
+      color: #241100;
+      font-weight: 700;
+      font-size: 0.8125rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 0 16px -2px var(--color-secondary-glow);
+      transition: all 0.2s ease;
+    }
+
+    .btn-action-sm:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .link-action-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--color-primary);
+      transition: color 0.2s;
+    }
+
+    .link-action-ghost:hover {
+      color: #ffffff;
+    }
+
+    /* Interactive Prism Widget Mockup */
+    .prism-glass-enclosure {
+      background: rgba(12, 10, 26, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+    }
+
+    .prism-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(22, 19, 44, 0.9);
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .prism-window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .prism-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .prism-dot:nth-child(1) { background: #ff5f56; }
+    .prism-dot:nth-child(2) { background: #ffbd2e; }
+    .prism-dot:nth-child(3) { background: #27c93f; }
+
+    .prism-body-canvas {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .palette-quad {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.65rem;
+    }
+
+    .swatch-chip {
+      height: 44px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .swatch-violet { background: #7c3aed; color: #fff; }
+    .swatch-amber { background: #ff9e0b; color: #1e1100; }
+    .swatch-cyan { background: #38bdf8; color: #04253a; }
+    .swatch-emerald { background: #10b981; color: #032a1d; }
+
+    .typography-test-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed rgba(124, 58, 237, 0.4);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Synapse Canvas Mockup */
+    .synapse-interactive-canvas {
+      height: 250px;
+      position: relative;
+      background: radial-gradient(circle at center, rgba(124, 58, 237, 0.12), transparent 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .synapse-node {
+      position: absolute;
+      background: rgba(26, 23, 56, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--color-primary);
+      padding: 0.65rem 0.95rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #ffffff;
+      box-shadow: 0 0 20px -3px var(--color-primary-glow);
+    }
+
+    .cursor-alex-lead {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--color-secondary);
+      color: #2b1700;
+      padding: 0.25rem 0.55rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      animation: cursorOrbit 8s infinite alternate ease-in-out;
+    }
+
+    @keyframes cursorOrbit {
+      0% { transform: translate(-20px, 30px); }
+      100% { transform: translate(50px, -35px); }
+    }
+
+    /* CAREER TIMELINE & JOURNEY (Frosted Glass Milestones) */
+    .career-timeline-deck {
+      position: relative;
+      margin-top: 3.5rem;
+      padding-left: 2.5rem;
+    }
+
+    .vertical-luminescence-spine {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 10px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--color-primary-container) 0%, rgba(124, 58, 237, 0.25) 75%, transparent 100%);
+      box-shadow: 0 0 12px var(--color-primary-glow);
+    }
+
+    .timeline-milestone {
+      position: relative;
+      margin-bottom: 3.5rem;
+    }
+
+    .spine-orb-anchor {
+      position: absolute;
+      left: -2.5rem;
+      top: 6px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--bg-midnight);
+      border: 3px solid var(--color-primary);
+      box-shadow: 0 0 16px var(--color-primary-glow);
+    }
+
+    .glass-milestone-card {
+      background: var(--bg-glass-card);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border-glass-bright);
+      border-radius: var(--radius-xl);
+      padding: 2.25rem;
+      box-shadow: 
+        0 20px 45px -15px rgba(0, 0, 0, 0.65),
+        inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .glass-milestone-card:hover {
+      border-color: rgba(210, 187, 255, 0.45);
+      transform: translateY(-2px);
+      box-shadow: 
+        0 26px 55px -15px rgba(0, 0, 0, 0.75),
+        0 0 25px -8px var(--color-primary-glow);
+    }
+
+    .milestone-brand-line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .milestone-company-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .company-logo-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .milestone-title-text {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .milestone-company-name {
+      color: var(--color-secondary);
+      font-weight: 600;
+    }
+
+    .milestone-tenure-tag {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.3rem 0.85rem;
+      border-radius: var(--radius-pill);
+    }
+
+    .milestone-bullets {
+      list-style-type: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      font-size: 0.975rem;
+      color: var(--color-text-muted);
+      line-height: 1.68;
+    }
+
+    .milestone-bullets li {
+      position: relative;
+      padding-left: 1.4rem;
+    }
+
+    .milestone-bullets li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--color-primary);
+      font-size: 1rem;
+    }
+
+    /* Frosted Pivot Story Callout */
+    .illuminated-pivot-block {
+      margin-top: 2.75rem;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.18) 0%, rgba(255, 188, 114, 0.09) 100%);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid var(--border-glow-amber);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      box-shadow: 
+        0 24px 50px -15px rgba(0, 0, 0, 0.6),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .pivot-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .pivot-title {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--color-secondary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .pivot-body {
+      font-size: 1rem;
+      color: #dfd9ee;
+      line-height: 1.75;
+    }
+
+    /* ULTRA-SLEEK GLASS FOOTER */
+    .glass-footer {
+      width: 100%;
+      background: rgba(10, 8, 22, 0.85);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-top: 1px solid var(--border-glass-bright);
+      margin-top: 5rem;
+    }
+
+    .footer-content {
+      padding: 4.5rem 0 3rem;
+    }
+
+    .footer-columns-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1.5fr 1fr;
+      gap: 3.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .footer-columns-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    .footer-bottom-bar {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.25rem;
+      font-size: 0.875rem;
+      color: var(--color-text-dim);
+    }
+  </style>
+</head>
+<body>
+<!-- Ambient Multi-Layer Cosmic Light Orbs -->
+<div class="cosmic-layer">
+<div class="cosmic-orb orb-violet-1"></div>
+<div class="cosmic-orb orb-amber-1"></div>
+<div class="cosmic-orb orb-indigo-2"></div>
+<div class="cosmic-orb orb-amber-2"></div>
+<div class="orb-subtle-mesh"></div>
+</div>
+<div class="app-viewport">
+<!-- Floating Frosted Glass Navigation Bar -->
+<header class="glass-header-shell">
+<nav class="glass-navbar">
+<a class="brand-cluster" href="#">
+<div class="brand-mark">AV</div>
+<div class="brand-meta">
+<span class="brand-name">Alex Vance</span>
+<span class="brand-sub">Staff Full-Stack</span>
+</div>
+</a>
+<div class="nav-links-deck">
+<a class="nav-pill active" href="#about">About</a>
+<a class="nav-pill" href="#projects">Projects</a>
+<a class="nav-pill" href="#timeline">Experience &amp; Journey</a>
+<a class="nav-pill" href="#arsenal">Architecture &amp; Skills</a>
+</div>
+<a class="nav-cta-btn" href="mailto:alex@vance.engineering">
+<span>Get in Touch</span>
+<span class="material-symbols-outlined" style="font-size: 18px;">north_east</span>
+</a>
+</nav>
+</header>
+<main class="content-constraint">
+<!-- HERO SECTION -->
+<section class="hero-space" id="about">
+<div class="hero-grid">
+<!-- Text Introduction -->
+<div class="hero-intro">
+<div class="status-capsule">
+<span class="green-radiant-pulse"></span>
+<span>AVAILABLE FOR SENIOR / LEAD FULL-STACK ROLES</span>
+</div>
+<div class="hero-title-group">
+<h1>Alex Vance</h1>
+<p class="hero-subtitle">
+                Crafting <span class="grad-text">High-Throughput</span> Web Platforms in TypeScript, React, Next.js &amp; Rust.
+              </p>
+</div>
+<p class="hero-body-para">
+              Full-stack and distributed systems engineer building high-throughput cloud infrastructure and reactive web platforms. Focused on <strong>sub-10ms</strong> p99 latencies, real-time telemetry, and resilient micro-architectures across Python, Go, and Rust.
+            </p>
+<div class="hero-actions-row">
+<a class="btn-radiant-amber" href="#projects">
+<span>Explore Featured Works</span>
+<span class="material-symbols-outlined" style="font-size: 18px;">arrow_downward</span>
+</a>
+<a class="btn-glass-secondary" href="#timeline">
+<span>Review Career Trajectory</span>
+<span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Character Mascot & Frosted Aura Showcase -->
+<div class="character-stage">
+<div class="stage-radial-bloom"></div>
+<div class="stage-aura-panel"></div>
+<!-- Floating Glass Micro-Chips -->
+<div class="glass-micro-chip chip-top-left">
+<div class="chip-icon-box violet">
+<span class="material-symbols-outlined" style="font-size: 14px;">terminal</span>
+</div>
+<span>Staff / Lead Architect</span>
+</div>
+<div class="glass-micro-chip chip-bottom-right">
+<div class="chip-icon-box amber">
+<span class="material-symbols-outlined" style="font-size: 14px;">bolt</span>
+</div>
+<span>99.99% Availability</span>
+</div>
+<div class="glass-micro-chip chip-bottom-left">
+<div class="chip-icon-box green">
+<span class="material-symbols-outlined" style="font-size: 14px;">speed</span>
+</div>
+<span>Zero-Latency UI</span>
+</div>
+<!-- Mascot Image -->
+<img alt="Alex Vance - Stylized 3D Character Avatar" class="character-cutout-img" src="https://lh3.googleusercontent.com/aida/AEtjO1XKMxTQ9ySa4sK_n0CiCfiFyaE2MlGzomDBvualtOxHeKDTG_7mT7feE0q9-n5ijhDoVaNvqL4i15IdKMDL3hrPJ29Km3qblwGb33BwdzxE6Vqf4wTxfkekswqfA9EZbxLJ9xBo2w0g3JVDMaIOqOjkHoqJeVPjX4FiJlNY13E3AHwgB8Nq7mhoqXEpcMJuUxkwUw4VR_UV5v9d-8rOFFEZ4k1l__pFsCEAVGHJ6o9i6Ehu-SjUuhgzJgc"/>
+</div>
+</div>
+<!-- VERIFIED ENGINEERING ARSENAL RACK -->
+<div class="arsenal-rack-shell" id="arsenal">
+<div class="arsenal-header">
+<span class="eyebrow-chip">
+<span class="material-symbols-outlined" style="font-size: 18px;">memory</span>
+              VERIFIED ENGINEERING ARSENAL
+            </span>
+<span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-dim);">
+              LATEST EVALUATION: 2025
+            </span>
+</div>
+<div class="arsenal-grid">
+<!-- Col 1 -->
+<div>
+<div class="arsenal-col-header">
+<span class="material-symbols-outlined" style="font-size: 16px; color: var(--color-primary);">layers</span>
+                Frontend Architecture
+              </div>
+<div class="arsenal-badge-flow">
+<span class="frosted-badge"><span class="badge-amber-dot"></span>React 19</span>
+<span class="frosted-badge"><span class="badge-amber-dot"></span>Next.js App Router</span>
+<span class="frosted-badge">TypeScript 5.x</span>
+<span class="frosted-badge">Tailwind CSS</span>
+<span class="frosted-badge">WebGL / Three.js</span>
+<span class="frosted-badge">TanStack Query</span>
+</div>
+</div>
+<!-- Col 2 -->
+<div>
+<div class="arsenal-col-header">
+<span class="material-symbols-outlined" style="font-size: 16px; color: var(--color-primary);">hub</span>
+                Core Backend &amp; Concurrency
+              </div>
+<div class="arsenal-badge-flow">
+<span class="frosted-badge"><span class="badge-amber-dot"></span>Node.js / Bun</span>
+<span class="frosted-badge"><span class="badge-amber-dot"></span>Python / FastAPI</span>
+<span class="frosted-badge">Go / Gin</span>
+<span class="frosted-badge">Rust (Axum)</span>
+<span class="frosted-badge">GraphQL / gRPC</span>
+<span class="frosted-badge">WebSocket Streams</span>
+</div>
+</div>
+<!-- Col 3 -->
+<div>
+<div class="arsenal-col-header">
+<span class="material-symbols-outlined" style="font-size: 16px; color: var(--color-primary);">cloud_done</span>
+                Distributed Data &amp; Cloud
+              </div>
+<div class="arsenal-badge-flow">
+<span class="frosted-badge"><span class="badge-amber-dot"></span>PostgreSQL / pgvector</span>
+<span class="frosted-badge"><span class="badge-amber-dot"></span>ClickHouse</span>
+<span class="frosted-badge">Apache Kafka</span>
+<span class="frosted-badge">Redis Clusters</span>
+<span class="frosted-badge">Kubernetes (EKS)</span>
+<span class="frosted-badge">Terraform AWS</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SELECTED WORKS (GLASS BENTO GRID) -->
+<section class="portfolio-section" id="projects">
+<div class="section-head">
+<span class="eyebrow-chip">
+<span class="material-symbols-outlined" style="font-size: 16px;">terminal</span>
+            FLAGSHIP ARCHITECTURE
+          </span>
+<h2 class="section-title">Selected Works &amp; Systems Deployed</h2>
+<p class="section-desc">
+            Production instances engineered for high-concurrency environments, sub-second query speeds, and zero-downtime reliability.
+          </p>
+</div>
+<div class="glass-filter-bar" id="projectFilterBar">
+<button class="filter-chip-btn active" data-filter="all">All Systems (4)</button>
+<button class="filter-chip-btn" data-filter="fullstack">Full-Stack</button>
+<button class="filter-chip-btn" data-filter="realtime">Cloud &amp; Real-time</button>
+<button class="filter-chip-btn" data-filter="ai">AI &amp; Data</button>
+</div>
+<div class="glass-bento-grid">
+<!-- Card 1: Prism UI -->
+<div class="glass-card card-full-span" data-category="fullstack visual">
+<div>
+<div class="proj-meta-header">
+<span class="eyebrow-chip eyebrow-amber">DESIGN SYSTEMS // INTERACTIVE ENGINE</span>
+<h3 class="proj-title">Prism UI — Design System Engine</h3>
+<p class="proj-desc">
+                  Interactive design token compiler &amp; real-time component visualizer built in React 19, Tailwind CSS &amp; HTML5 Canvas rendering. Features live multi-theme color interpolation, interactive contrast matrices, and dynamic typography playground preview.
+                </p>
+</div>
+<div class="proj-metrics-trio">
+<div class="metric-sub-col">
+<span class="metric-value">0.2ms</span>
+<span class="metric-label">Token Recompile</span>
+</div>
+<div class="metric-sub-col">
+<span class="metric-value">60 FPS</span>
+<span class="metric-label">Interactive Canvas</span>
+</div>
+<div class="metric-sub-col">
+<span class="metric-value">React 19</span>
+<span class="metric-label">Core Framework</span>
+</div>
+</div>
+<div class="arsenal-badge-flow" style="margin-bottom: 1.5rem;">
+<span class="frosted-badge">React 19</span>
+<span class="frosted-badge">TypeScript</span>
+<span class="frosted-badge">Tailwind CSS</span>
+<span class="frosted-badge">Canvas API</span>
+<span class="frosted-badge">Design Tokens</span>
+</div>
+<div class="proj-footer-links">
+<a class="btn-action-sm" href="#projects">
+<span>Launch Studio</span>
+<span class="material-symbols-outlined" style="font-size: 16px;">north_east</span>
+</a>
+<a class="link-action-ghost" href="https://github.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined" style="font-size: 16px;">code</span>
+<span>Inspect Playground</span>
+</a>
+</div>
+</div>
+<!-- Mockup Widget -->
+<div class="prism-glass-enclosure">
+<div class="prism-topbar">
+<div class="prism-window-dots">
+<div class="prism-dot"></div>
+<div class="prism-dot"></div>
+<div class="prism-dot"></div>
+</div>
+<span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--color-text-dim);">prism-ui.studio // token-playground</span>
+<span style="font-family: var(--font-mono); font-size: 0.65rem; color: #10b981; font-weight: 600;">● LIVE COMPILED</span>
+</div>
+<div class="prism-body-canvas">
+<div class="palette-quad">
+<div class="swatch-chip swatch-violet">violet</div>
+<div class="swatch-chip swatch-amber">amber</div>
+<div class="swatch-chip swatch-cyan">cyan</div>
+<div class="swatch-chip swatch-emerald">emerald</div>
+</div>
+<div class="typography-test-card">
+<div>
+<span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-primary);">Typography Scale</span>
+<p style="margin-top: 0.2rem; font-size: 0.85rem; font-weight: 600; color: #ffffff;">Adaptive Fluid H1 &amp; Display</p>
+</div>
+<span style="font-family: var(--font-mono); font-size: 0.65rem; background: rgba(255, 188, 114, 0.15); color: var(--color-secondary); padding: 3px 8px; border-radius: 4px;">4.25rem / 68px</span>
+</div>
+<div style="display:flex; justify-content:space-between; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--color-text-dim);">
+<span>WCAG AAA: PASS (7.8:1)</span>
+<span>SHADOW: LUMINOUS</span>
+<span>TOKENS: 248</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Synapse Studio -->
+<div class="glass-card card-full-span" data-category="fullstack realtime">
+<!-- Mockup Canvas -->
+<div class="prism-glass-enclosure">
+<div class="prism-topbar">
+<div class="prism-window-dots">
+<div class="prism-dot"></div>
+<div class="prism-dot"></div>
+<div class="prism-dot"></div>
+</div>
+<span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--color-text-dim);">synapse.canvas // collaborative-mesh</span>
+<span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--color-primary); font-weight: 600;">6 PEERS CONNECTED</span>
+</div>
+<div class="synapse-interactive-canvas">
+<div class="synapse-node" style="top: 22%; left: 14%;">
+<div>[Node: Pipeline]</div>
+<span style="font-size: 0.65rem; color: var(--color-secondary);">State: Healthy</span>
+</div>
+<div class="synapse-node" style="bottom: 22%; right: 16%;">
+<div>[Sink: PostgreSQL]</div>
+<span style="font-size: 0.65rem; color: #10b981;">Indexed pgvector</span>
+</div>
+<div class="cursor-alex-lead">
+<span class="material-symbols-outlined" style="font-size: 13px;">near_me</span>
+<span>alex_lead (you)</span>
+</div>
+<svg style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;">
+<line stroke="rgba(210, 187, 255, 0.4)" stroke-dasharray="5 5" stroke-width="2" x1="28%" x2="68%" y1="36%" y2="64%"></line>
+</svg>
+</div>
+</div>
+<div>
+<div class="proj-meta-header">
+<span class="eyebrow-chip eyebrow-amber">REAL-TIME CRDT // COLLABORATIVE CANVAS</span>
+<h3 class="proj-title">Synapse Studio — Collaborative Flow Synthesizer</h3>
+<p class="proj-desc">
+                  Infinite interactive canvas engineering tool empowering distributed teams to design cloud architectures synchronously. Powered by Yjs CRDTs over WebSockets with a WebGL accelerated hardware renderer and live visual node connectors.
+                </p>
+</div>
+<div class="proj-metrics-trio">
+<div class="metric-sub-col">
+<span class="metric-value">120 FPS</span>
+<span class="metric-label">Canvas Render Loop</span>
+</div>
+<div class="metric-sub-col">
+<span class="metric-value">&lt;8ms</span>
+<span class="metric-label">Peer Sync Delta</span>
+</div>
+<div class="metric-sub-col">
+<span class="metric-value">Rust / Wasm</span>
+<span class="metric-label">Core Evaluator</span>
+</div>
+</div>
+<div class="arsenal-badge-flow" style="margin-bottom: 1.5rem;">
+<span class="frosted-badge">TypeScript</span>
+<span class="frosted-badge">WebGL</span>
+<span class="frosted-badge">Yjs CRDT</span>
+<span class="frosted-badge">Rust (WASM)</span>
+<span class="frosted-badge">WebSockets</span>
+</div>
+<div class="proj-footer-links">
+<a class="btn-action-sm" href="#projects">
+<span>Launch Workspace</span>
+<span class="material-symbols-outlined" style="font-size: 16px;">north_east</span>
+</a>
+<a class="link-action-ghost" href="https://github.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined" style="font-size: 16px;">code</span>
+<span>Architecture Docs</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Card 3: Lumina Analytics -->
+<div class="glass-card card-half-span" data-category="realtime visual">
+<div>
+<div class="proj-meta-header">
+<span class="eyebrow-chip">SPATIAL WEBGL &amp; REAL-TIME TELEMETRY</span>
+<h3 class="proj-title">Lumina Analytics — Spatial WebGL Dashboard</h3>
+<p class="proj-desc">
+                  Real-time telemetry dashboard with interactive 3D charts, micro-frontend architecture, and sub-second reactive updates across streaming metrics and geographic topology nodes.
+                </p>
+</div>
+<div class="proj-metrics-trio">
+<div class="metric-sub-col">
+<span class="metric-value">60 FPS</span>
+<span class="metric-label">3D WebGL Mesh</span>
+</div>
+<div class="metric-sub-col">
+<span class="metric-value">14ms</span>
+<span class="metric-label">Stream Latency</span>
+</div>
+</div>
+<div class="arsenal-badge-flow">
+<span class="frosted-badge">Three.js</span>
+<span class="frosted-badge">React 19</span>
+<span class="frosted-badge">WebGL</span>
+<span class="frosted-badge">WebSockets</span>
+</div>
+</div>
+<div class="proj-footer-links">
+<a class="link-action-ghost" href="#projects">
+<span>Launch Spatial View</span>
+<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 4: VectorPulse -->
+<div class="glass-card card-half-span" data-category="ai visual">
+<div>
+<div class="proj-meta-header">
+<span class="eyebrow-chip eyebrow-amber">AI VISUAL SEARCH // GENERATIVE STUDIO</span>
+<h3 class="proj-title">VectorPulse — AI Visual Search Studio</h3>
+<p class="proj-desc">
+                  High-fidelity generative visual search interface with dynamic multi-modal image clustering, high-dimensional vector similarity projections, and streaming token UI.
+                </p>
+</div>
+<div class="proj-metrics-trio">
+<div class="metric-sub-col">
+<span class="metric-value">18ms</span>
+<span class="metric-label">Embedding Search</span>
+</div>
+<div class="metric-sub-col">
+<span class="metric-value">4.5M</span>
+<span class="metric-label">Indexed Projections</span>
+</div>
+</div>
+<div class="arsenal-badge-flow">
+<span class="frosted-badge">Next.js</span>
+<span class="frosted-badge">pgvector</span>
+<span class="frosted-badge">React 19</span>
+<span class="frosted-badge">WebGL Projection</span>
+</div>
+</div>
+<div class="proj-footer-links">
+<a class="link-action-ghost" href="#projects">
+<span>View Studio Demos</span>
+<span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- CAREER TIMELINE & JOURNEY -->
+<section class="portfolio-section" id="timeline">
+<div class="section-head">
+<span class="eyebrow-chip">
+<span class="material-symbols-outlined" style="font-size: 16px;">history_edu</span>
+            EVOLUTION &amp; TENURE
+          </span>
+<h2 class="section-title">Career Milestones &amp; Trajectory</h2>
+<p class="section-desc">
+            A progression founded on foundational computational physics, refined across high-velocity startups and mission-critical cloud enterprises.
+          </p>
+</div>
+<div class="career-timeline-deck">
+<div class="vertical-luminescence-spine"></div>
+<!-- ChronoScale -->
+<div class="timeline-milestone">
+<div class="spine-orb-anchor"></div>
+<div class="glass-milestone-card">
+<div class="milestone-brand-line">
+<div class="milestone-company-info">
+<img alt="ChronoScale Logo" class="company-logo-avatar" src="https://lh3.googleusercontent.com/aida/AEtjO1VFOWAVtVzK6c3Zzz3x4QAzfHECp_X-83dnoCV_0Kyfuk8rOhb8ItfNrjd192Md9WVpVdgJGaNARxq39eEdqWvagu9rESHApiAKnGO7nOsWGqBgKD0n_TWlt49E0vws-v0f_9zllF0Mn1Pl_jciiutJZfvdf_sR8kujJSWKyHZKHYfFxpzTLp6KnvfpxKGnbHtiS2FG-BvsHvoSE_aKozgDZIiFeqNq1sfmXXhKwMFRrcd1FzKl4-Ce-fU"/>
+<div>
+<span class="milestone-title-text">Staff / Lead Full-Stack Engineer</span>
+<span class="milestone-company-name"> @ ChronoScale</span>
+</div>
+</div>
+<span class="milestone-tenure-tag">2023 — PRESENT</span>
+</div>
+<ul class="milestone-bullets">
+<li>Architected full transition to Next.js App Router and server actions across 8 autonomous engineering squads, slicing hydration times by 40%.</li>
+<li>Designed an edge-cached multi-tenant state layer over Redis and Cloudflare Workers, handling 4.2 million edge requests per hour with zero downtime.</li>
+<li>Mentored 12 mid and senior engineers through architectural review processes and advanced TypeScript patterns.</li>
+</ul>
+<div class="arsenal-badge-flow" style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.06);">
+<span class="frosted-badge"><span class="badge-amber-dot"></span>Next.js App Router</span>
+<span class="frosted-badge">TypeScript</span>
+<span class="frosted-badge">Server Actions</span>
+<span class="frosted-badge">Cloudflare Workers</span>
+<span class="frosted-badge">Apache Kafka</span>
+<span class="frosted-badge">Distributed Systems</span>
+<span class="frosted-badge">Team Mentorship</span>
+</div>
+</div>
+</div>
+<!-- Apex Data Systems -->
+<div class="timeline-milestone">
+<div class="spine-orb-anchor"></div>
+<div class="glass-milestone-card">
+<div class="milestone-brand-line">
+<div class="milestone-company-info">
+<img alt="Apex Data Systems Logo" class="company-logo-avatar" src="https://lh3.googleusercontent.com/aida/AEtjO1U7aRZlF_Zba3l_gUIj5hv3lqopS6ISLBtH1EK6oFo15bLDSWvMMRXfRAolXoNmwb5mZzGv0IWa88e0pEKRL4n8f5P_S2uE_i4jAEPCOed053N1uuhYVlio-CeVvz0EQ88QRV8bS2FqpPY43JmUu7zeF-zAvG05GfPXPGXfq8zJBDO1irE5VQeWoVLJ8ziYzA04VVSbDMEVRJ4C9mqlqxs5EhtCBXc6RkVsEkw_rOUFMtkWrmiBdFcw_rw"/>
+<div>
+<span class="milestone-title-text">Senior Systems &amp; Full-Stack Engineer</span>
+<span class="milestone-company-name"> @ Apex Data Systems</span>
+</div>
+</div>
+<span class="milestone-tenure-tag">2021 — 2023</span>
+</div>
+<ul class="milestone-bullets">
+<li>Spearheaded streaming analytics engine transition to ClickHouse and Apache Kafka, reducing query execution costs by 58%.</li>
+<li>Engineered core React dashboard components handling high-frequency live WebSockets updates without main thread UI jank or memory leaks.</li>
+<li>Established CI/CD pipeline automated preview environments reducing deploy verification cycle from 45 minutes to 7 minutes.</li>
+</ul>
+<div class="arsenal-badge-flow" style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.06);">
+<span class="frosted-badge"><span class="badge-amber-dot"></span>React</span>
+<span class="frosted-badge">ClickHouse</span>
+<span class="frosted-badge">Apache Kafka</span>
+<span class="frosted-badge">Redis Clusters</span>
+<span class="frosted-badge">WebSockets</span>
+<span class="frosted-badge">CI/CD Pipelines</span>
+<span class="frosted-badge">Performance Tuning</span>
+</div>
+</div>
+</div>
+<!-- Veloce Labs -->
+<div class="timeline-milestone">
+<div class="spine-orb-anchor"></div>
+<div class="glass-milestone-card">
+<div class="milestone-brand-line">
+<div class="milestone-company-info">
+<img alt="Veloce Labs Logo" class="company-logo-avatar" src="https://lh3.googleusercontent.com/aida/AEtjO1VHO-KcswNIsA_KGPGdcw252BwSwsvxmzxWgRl5eF1snNwbJdOlS4Gws9FpzwHAhLnvpHrDWa4LpReAt_lxt6sihWN3gngl7zTw23Z11uxNV_fVlFHfsQqyw4QJ78XPed-nNYZPk-nAOJBDqvMLLIBfjN0B6ySCUGhAH0J-ZSWWcLpJ31HukybCKsehISC-nLl3va_AS8Mj-xTKD-KqrhAVS9xxEbKoy5EqObaIq70TH3HCBhtK1t8k3QPo"/>
+<div>
+<span class="milestone-title-text">Full-Stack Developer</span>
+<span class="milestone-company-name"> @ Veloce Labs</span>
+</div>
+</div>
+<span class="milestone-tenure-tag">2019 — 2021</span>
+</div>
+<ul class="milestone-bullets">
+<li>Developed modular design system with zero runtime CSS overhead, utilized across all commercial client customer portals.</li>
+<li>Implemented GraphQL microservices in Node.js and Go to aggregate 14 fragmented legacy REST APIs into a unified typed schema.</li>
+</ul>
+<div class="arsenal-badge-flow" style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.06);">
+<span class="frosted-badge"><span class="badge-amber-dot"></span>Node.js</span>
+<span class="frosted-badge">Go / Gin</span>
+<span class="frosted-badge">GraphQL APIs</span>
+<span class="frosted-badge">PostgreSQL</span>
+<span class="frosted-badge">Microservices</span>
+<span class="frosted-badge">Zero-Runtime CSS</span>
+</div>
+</div>
+</div>
+<!-- Illuminated The Pivot Callout -->
+<div class="illuminated-pivot-block">
+<div class="pivot-header">
+<span class="material-symbols-outlined" style="color: var(--color-secondary); font-size: 22px;">switch_access_shortcut</span>
+<span class="pivot-title">THE PIVOT: FROM APPLIED PHYSICS TO DISTRIBUTED WEB PLATFORMS</span>
+</div>
+<p class="pivot-body">
+              Before entering commercial software, I analyzed boundary-layer fluid dynamics and numerical simulations in aerospace labs. The transition to distributed web engineering felt natural: whether balancing mass-conservation equations or engineering backpressure across streaming event queues, solving for throughput, race conditions, and graceful degradation relies on the exact same underlying mental models.
+            </p>
+</div>
+</div>
+</section>
+</main>
+<!-- ULTRA-SLEEK GLASS FOOTER -->
+<footer class="glass-footer">
+<div class="content-constraint footer-content">
+<div class="footer-columns-grid">
+<!-- Col 1 -->
+<div>
+<div class="brand-cluster" style="margin-bottom: 0.75rem;">
+<span class="brand-name" style="font-size: 1.2rem;">AX // Alex Vance</span>
+<span style="font-family: var(--font-mono); font-size: 0.75rem; background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px; color: var(--color-primary);">v4.2.0-prod</span>
+</div>
+<p style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.6; max-width: 340px;">
+              Senior Full-Stack Engineer engineering high-concurrency cloud systems, reactive distributed state, and modern interfaces.
+            </p>
+<div style="display:flex; align-items:center; gap: 0.5rem; margin-top: 1rem;">
+<span class="green-radiant-pulse"></span>
+<span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-dim);">All Nodes Operational • Latency 14ms</span>
+</div>
+</div>
+<!-- Col 2 -->
+<div>
+<span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-primary); letter-spacing: 0.1em; text-transform: uppercase;">Core Runtime Stack</span>
+<div class="arsenal-badge-flow" style="margin-top: 0.85rem;">
+<span class="frosted-badge">TypeScript</span>
+<span class="frosted-badge">React 19</span>
+<span class="frosted-badge">Next.js App Router</span>
+<span class="frosted-badge">Node.js</span>
+<span class="frosted-badge">Python / FastAPI</span>
+<span class="frosted-badge">AWS Distributed</span>
+<span class="frosted-badge">GraphQL</span>
+<span class="frosted-badge">Docker</span>
+</div>
+</div>
+<!-- Col 3 -->
+<div style="display:flex; flex-direction:column; gap: 0.65rem;">
+<span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-dim); letter-spacing: 0.1em; text-transform: uppercase;">Protocols &amp; Social</span>
+<div style="display:flex; flex-direction:column; gap: 0.4rem; font-size: 0.875rem;">
+<a class="nav-pill" href="#" style="color: var(--color-text-muted); display:inline-flex; align-items:center; gap: 0.35rem;">
+<span style="font-family: var(--font-mono); color: var(--color-primary);">gh/</span>github
+              </a>
+<a class="nav-pill" href="#" style="color: var(--color-text-muted); display:inline-flex; align-items:center; gap: 0.35rem;">
+<span style="font-family: var(--font-mono); color: var(--color-primary);">in/</span>linkedin
+              </a>
+<a class="nav-pill" href="#" style="color: var(--color-text-muted); display:inline-flex; align-items:center; gap: 0.35rem;">
+<span style="font-family: var(--font-mono); color: var(--color-primary);">x/</span>terminal
+              </a>
+<a class="nav-pill" href="#" style="color: var(--color-text-muted); display:inline-flex; align-items:center; gap: 0.35rem;">
+<span style="font-family: var(--font-mono); color: var(--color-primary);">sub/</span>substack
+              </a>
+</div>
+</div>
+</div>
+<div class="footer-bottom-bar">
+<span>© 2025 Alex Vance. Synthesized with precision. All rights reserved.</span>
+<div style="display:flex; align-items:center; gap: 1.5rem;">
+<span style="font-family: var(--font-mono); font-size: 0.8125rem;">UTC-0800 • San Francisco, CA</span>
+<a href="mailto:alex@vance.engineering" style="font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-primary); display:inline-flex; align-items:center; gap: 0.35rem;">
+<span class="material-symbols-outlined" style="font-size: 16px;">mail</span>
+              alex@vance.engineering
+            </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<!-- Interactive Project Filtering -->
+<script>
+    (function() {
+      const filterBar = document.getElementById('projectFilterBar');
+      if (filterBar) {
+        const buttons = filterBar.querySelectorAll('.filter-chip-btn');
+        const cards = document.querySelectorAll('.glass-card[data-category]');
+
+        buttons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const target = btn.getAttribute('data-filter');
+
+            cards.forEach(card => {
+              const categories = card.getAttribute('data-category') || '';
+              if (target === 'all' || categories.includes(target)) {
+                card.style.display = card.classList.contains('card-full-span') ? 'grid' : 'flex';
+                setTimeout(() => card.style.opacity = '1', 10);
+              } else {
+                card.style.display = 'none';
+                card.style.opacity = '0';
+              }
+            });
+          });
+        });
+      }
+    })();
+  </script>
+</body></html>

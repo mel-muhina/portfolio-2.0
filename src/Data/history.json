@@ -5,6 +5,12 @@
     "startDate": "May 2026",
     "endDate": "Present",
     "description": "",
+    "bullets": [
+      "Building fullstack features across a Python/FastAPI backend and a TypeScript/React frontend, delivering end-to-end functionality as a solo developer.",
+      "Gathering requirements and designing features for greenfield work, including database schema design and API architecture.",
+      "Deploying and maintaining cloud infrastructure on AWS and Azure, using Terraform and Docker for reproducible, containerised environments.",
+      "Automating CI/CD Deployments and testing suites with GitHub Actions, using Terraform to manage infrastructure and Jest for automated testing."
+    ],
     "experiences": [
       "Fullstack Development",
       "Python",
@@ -28,6 +34,11 @@
     "startDate": "January 2025",
     "endDate": "April 2026",
     "description": "",
+    "bullets": [
+      "Developed fullstack features with a Java/Spring Boot backend and a TypeScript/React frontend, integrating data through GraphQL and SQL databases.",
+      "Translated Figma designs into responsive UI using TailwindCSS and SCSS, ensuring pixel-accurate, accessible interfaces.",
+      "Drove quality with behaviour-driven testing in Gherkin and end-to-end coverage in Cypress, deploying to GCP."
+    ],
     "experiences": [
       "Fullstack Development",
       "TailwindCSS",
@@ -45,14 +56,20 @@
     "imageSrc": "Ford.webp"
   },
   {
-    "role": "Frontend Developer Volunteer",
+    "role": "Frontend Developer (Volunteer)",
     "organisation": "Smallpeice Trust",
     "startDate": "October 2024",
     "endDate": "December 2024",
     "description": "",
+    "bullets": [
+      "Built a mobile-first, responsive app in NextJS and React to guide 16–18 year olds toward engineering careers.",
+      "Created and implemented designs from Figma using TailwindCSS and SCSS, prioritising UX/UI clarity and accessibility.",
+      "Collaborated in a volunteer team over two months to ship a polished, user-tested product."
+    ],
     "experiences": [
       "Frontend Development",
-      "NextJS",
+      "Typescript",
+      "Next.js",
       "TailwindCSS",
       "Figma",
       "SCSS",
@@ -71,18 +88,23 @@
     "startDate": "July 2024",
     "endDate": "September 2024",
     "description": "",
+    "bullets": [
+      "Completed intensive fullstack training across frontend (Javascript, React) and backend (Node.js, SQL) development.",
+      "Applied project management practices to deliver features within a collaborative, agile team environment.",
+      "Containerised applications with Docker to standardise local and deployed environments."
+    ],
     "experiences": [
-      "Frontend Development",
-      "Project Management",
-      "CSS",
-      "HTML",
-      "Backend Development",
       "Fullstack development",
+      "Frontend Development",
+      "Backend Development",
       "SQL",
       "React",
       "JavaScript",
       "Node.js",
-      "Docker"
+      "Docker",
+      "Project Management",
+      "CSS",
+      "HTML"
     ],
     "imageSrc": "LaFosse.jpeg"
   }

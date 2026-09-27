@@ -1,50 +1,74 @@
 [
   {
-    "title": "PawPrint",
+    "header": "APPLICATION ARCHITECTURE // PREDICTIVE INTEGRATION",
+    "title": "Paw Print",
     "description": "Collaboration with a data engineer who created a machine learning model to predict the breed of a dog from an image. I created the design, frontend, backend and database.",
-    "languages": ["React", "TypeScript", "Java", "CSS / SCSS", "Figma", "ML"],
+    "languages": ["React", "Typescript", "Java / Springboot", "MySQL", "CSS / SCSS", "Figma", "Machine Learning"],
     "demo": "https://youtu.be/ee2a17kVje0",
     "source": "https://github.com/mel-muhina/pawprint",
-    "imageSrc": "pawprint.webp"
+    "imageSrc": "pawprint.webp",
+    "category": "Fullstack",
+    "keyInfo": [
+      ["Machine Learning", "Breed Prediction"],
+      ["Architecture", "React / Typescript / Java"]
+    ]
   },
   {
+    "header": "EDTECH PLATFORM // RECOMMENDATION ENGINE",
     "title": "Smallpeice Engineer",
     "description": "This was a two month volunteering project for Smallpeice Trust. The aim was to make a mobile-first app to aid 16-18 year olds with potential engineering careers. ",
-    "languages": ["React", "JavaScript", "NextJS", "CSS / SCSS", "TailWindCSS", "Figma"],
+    "languages": ["React", "Typescript", "NextJS", "AWS","CSS / SCSS", "TailWindCSS", "Figma"],
     "demo": "https://www.youtube.com/shorts/2HtyYHEcSxI",
     "source": "https://frontend-xi-five-65.vercel.app/",
-    "imageSrc": "careersgif.JPG"
+    "imageSrc": "careersgif.JPG",
+    "category": "Fullstack",
+    "keyInfo": [
+      ["Machine Learning", "Career Recommendation"],
+      ["Architecture", "React / Typescript"]
+    ]
   },
   {
+    "header": "GEOSPATIAL API // SPATIAL MAPPING PLATFORM",
     "title": "Nature Connect",
     "description": "This project was a larger group project, focusing on creating a solution for users that want to reconnect to nature. This was a more complex project created over 2 weeks.",
-    "languages": ["React", "JavaScript", "HTML", "CSS / SCSS", "NodeJS", "Figma"],
+    "languages": ["React", "Javascript", "HTML", "CSS / SCSS", "SQL", "Google Maps API","AWS","Node.js", "Figma"],
     "demo": "https://youtu.be/nb9gfPYcVs8",
     "source": "https://github.com/mel-muhina/final-project-frontend/",
-    "imageSrc": "natureconnect-img.JPG"
+    "imageSrc": "natureConnect.png",
+    "category": "Fullstack",
+    "keyInfo": [
+      ["Machine Learning", "Green Space Recommendation"],
+      ["Architecture", "React / Javascript / Node.js"]
+    ]
   },
   {
+    "header": "RAPID DEVELOPMENT // REST API INTEGRATION",
     "title": "Cat Tree",
     "description": "A project focused on creating a react application within a 2 day time frame, using a CatAPI to create a cat shelter theme website to support the adoption of more cats.",
-    "languages": ["React", "JavaScript", "HTML", "CSS / SCSS", "NodeJS", "Figma"],
+    "languages": ["React", "Javascript", "HTML", "CSS / SCSS", "Node.js", "Figma"],
     "demo": "https://cattree.onrender.com/",
     "source": "https://github.com/mel-muhina/CatTree",
-    "imageSrc": "cattree.JPG"
+    "imageSrc": "cattree.JPG",
+    "category": "Fullstack"
   },
   {
+    "header": "GAMIFICATION // INTERACTIVE EDTECH",
     "title": "Timeless Advisor",
     "description": "A fullstack group project, with a week deadline, focusing on creating a History game for secondary school students.",
-    "languages": ["NodeJS", "SQL", "JavaScript", "HTML", "CSS / SCSS", "Figma"],
+    "languages": ["Node.js", "SQL", "Javascript", "HTML", "CSS / SCSS", "Figma"],
     "demo": "https://youtu.be/REd_lRZaYTw",
     "source": "https://github.com/mel-muhina/Blizzard",
-    "imageSrc": "timelessadvisor.JPG"
+    "imageSrc": "timelessadvisor.JPG",
+    "category": "Fullstack"
   },
   {
+    "header": "FINTECH INTERFACE // COMPONENT ARCHITECTURE",
     "title": "Draft Banking",
     "description": "A project focused on creating a banking app with sleek UI and implementing new techniques learned in React.",
-    "languages": ["React", "JavaScript", "HTML", "CSS / SCSS", "Figma"],
+    "languages": ["React", "Javascript", "HTML", "CSS / SCSS", "Figma"],
     "demo": "https://mel-muhina.github.io/draftBanking/",
     "source": "https://github.com/mel-muhina/draftBanking",
-    "imageSrc": "draftbanking.jpg"
+    "imageSrc": "draftbanking.jpg",
+    "category": "Fullstack"
   }
 ]

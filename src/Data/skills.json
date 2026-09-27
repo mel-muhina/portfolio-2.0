@@ -1,115 +1,39 @@
 [
-  {
-    "title": "TypeScript",
-    "imageSrc": "typescript.svg"
-  },
-  {
-    "title": "JavaScript",
-    "imageSrc": "javascript.png"
-  },
-  {
-    "title": "Java",
-    "imageSrc": "java.webp"
-  },
-  {
-    "title": "Python",
-    "imageSrc": "python.webp"
-  },
-  {
-    "title": "React",
-    "imageSrc": "react.webp"
-  },
-  {
-    "title": "Next.js",
-    "imageSrc": "nextjs.png"
-  },
-  {
-    "title": "Node.js",
-    "imageSrc": "node.png"
-  },
-  {
-    "title": "FastAPI",
-    "imageSrc": "fastapi.png"
-  },
-  {
-    "title": "Spring Boot",
-    "imageSrc": "springboot.webp"
-  },
-  {
-    "title": "Redux",
-    "imageSrc": "redux.webp"
-  },
-  {
-    "title": "Figma",
-    "imageSrc": "figma.png"
-  },
-  {
-    "title": "WebSockets",
-    "imageSrc": "webSocket.webp"
-  },
-  {
-    "title": "MQTT",
-    "imageSrc": "mqtt.webp"
-  },
-  {
-    "title": "JFrog Artifactory",
-    "imageSrc": "jfrog.webp"
-  },
-  {
-    "title": "SonarQube",
-    "imageSrc": "sonarqube.webp"
-  },
-  {
-    "title": "Postman",
-    "imageSrc": "postman.webp"
-  },
-  {
-    "title": "Firebase",
-    "imageSrc": "firebase.webp"
-  },
-  {
-    "title": "Adobe Suite",
-    "imageSrc": "adobe.png"
-  },
-  {
-    "title": "Photoshop",
-    "imageSrc": "photoshop.png"
-  },
-  {
-    "title": "PostgresSQL",
-    "imageSrc": "Postgresql.webp"
-  },
-  {
-    "title": "Git Flow",
-    "imageSrc": "git.png"
-  },
-  {
-    "title": "TailWindCSS",
-    "imageSrc": "tailwind.png"
-  },
+  { "title": "Typescript", "imageSrc": "typescript.svg", "category": "frontend" },
+  { "title": "Javascript", "imageSrc": "javascript.png", "category": "frontend" },
+  { "title": "React", "imageSrc": "react.webp", "category": "frontend" },
+  { "title": "Next.js", "imageSrc": "nextjs.png", "category": "frontend" },
+  { "title": "Redux", "imageSrc": "redux.webp", "category": "frontend" },
+  { "title": "TailWind CSS", "imageSrc": "tailwind.png", "category": "frontend" },
+  { "title": "HTML", "imageSrc": "html.png", "category": "frontend" },
+  { "title": "CSS / SCSS", "imageSrc": "css.png", "category": "frontend" },
+  { "title": "Figma", "imageSrc": "figma.png", "category": "frontend" },
+  { "title": "Cypress", "imageSrc": "cypress.webp", "category": "frontend" },
+  { "title": "Jest", "imageSrc": "jest.webp", "category": "frontend" },
+  { "title": "Playwright", "imageSrc": "playwright.webp", "category": "frontend" },
 
-  {
-    "title": "HTML",
-    "imageSrc": "html.png"
-  },
-  {
-    "title": "CSS | SCSS",
-    "imageSrc": "css.png"
-  },
-  {
-    "title": "Jest",
-    "imageSrc": "jest.webp"
-  },
-  {
-    "title": "Cypress",
-    "imageSrc": "cypress.svg"
-  },
-  {
-    "title": "Playwright",
-    "imageSrc": "playwright.webp"
-  },
-  {
-    "title": "Agile",
-    "imageSrc": "agile.png"
-  }
+  { "title": "Java", "imageSrc": "java.webp", "category": "backend" },
+  { "title": "Python", "imageSrc": "python.webp", "category": "backend" },
+  { "title": "Node.js", "imageSrc": "node.png", "category": "backend" },
+  { "title": "FastAPI", "imageSrc": "fastapi.png", "category": "backend" },
+  { "title": "Spring Boot", "imageSrc": "springboot.webp", "category": "backend" },
+  { "title": "WebSockets", "imageSrc": "webSocket.webp", "category": "backend" },
+  { "title": "MQTT", "imageSrc": "mqtt.webp", "category": "backend" },
+  { "title": "GraphQL", "imageSrc": "graphql.webp", "category": "backend" },
+  { "title": "Postman", "imageSrc": "postman.webp", "category": "backend" },
+  { "title": "PostgresSQL", "imageSrc": "Postgresql.webp", "category": "backend" },
+  { "title": "Cucumber / Gherkin", "imageSrc": "cucumber.png", "category": "backend" },
+
+  { "title": "AWS", "imageSrc": "aws.png", "category": "cloud" },
+  { "title": "Azure", "imageSrc": "azure.png", "category": "cloud" },
+  { "title": "Google Cloud Platform", "imageSrc": "gcp.png", "category": "cloud" },
+  { "title": "Terraform", "imageSrc": "terraform.webp", "category": "cloud" },
+  { "title": "Docker", "imageSrc": "docker.png", "category": "cloud" },
+  { "title": "Firebase", "imageSrc": "firebase.webp", "category": "cloud" },
+  { "title": "JFrog Artifactory", "imageSrc": "jfrog.webp", "category": "cloud" },
+  { "title": "SonarQube", "imageSrc": "sonarqube.webp", "category": "cloud" },
+  { "title": "Git Flow", "imageSrc": "git.png", "category": "cloud" },
+  { "title": "42Crunch", "imageSrc": "42crunch.png", "category": "cloud" },
+  { "title": "Optimizely", "imageSrc": "optimizely.webp", "category": "cloud" },
+  { "title": "Agile", "imageSrc": "agile.png", "category": "cloud" }
 ]
