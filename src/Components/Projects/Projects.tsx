@@ -50,25 +50,26 @@ export default function Projects() {
         </p>
       </div>
 
-      <div className={styles['glass-filter-bar']}>
-        {FILTERS.map((filter) => {
-          const count =
-            filter.key === 'all'
-              ? allProjects.length
-              : allProjects.filter((p) => p.category === filter.key).length;
-          return (
-            <button
-              key={filter.key}
-              className={`${styles['filter-chip-btn']} ${
-                activeFilter === filter.key ? styles.active : ''
-              }`}
-              onClick={() => setActiveFilter(filter.key)}
-            >
-              {filter.label} ({count})
-            </button>
-          );
-        })}
-      </div>
+      {/*Not needed for now - decide what to filter by*/}
+      {/*<div className={styles['glass-filter-bar']}>*/}
+      {/*  {FILTERS.map((filter) => {*/}
+      {/*    const count =*/}
+      {/*      filter.key === 'all'*/}
+      {/*        ? allProjects.length*/}
+      {/*        : allProjects.filter((p) => p.category === filter.key).length;*/}
+      {/*    return (*/}
+      {/*      <button*/}
+      {/*        key={filter.key}*/}
+      {/*        className={`${styles['filter-chip-btn']} ${*/}
+      {/*          activeFilter === filter.key ? styles.active : ''*/}
+      {/*        }`}*/}
+      {/*        onClick={() => setActiveFilter(filter.key)}*/}
+      {/*      >*/}
+      {/*        {filter.label} ({count})*/}
+      {/*      </button>*/}
+      {/*    );*/}
+      {/*  })}*/}
+      {/*</div>*/}
 
       <div className={styles['glass-bento-grid']}>
         {visibleProjects.map((project, index) => {
