@@ -2,6 +2,7 @@
 
 .portfolio-section {
   padding: 4rem 0;
+  margin: 0 auto;
   position: relative;
 }
 
@@ -230,6 +231,7 @@
 .proj-footer-links {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1.2rem;
   margin-top: 0.5rem;
 }
@@ -415,7 +417,7 @@
   box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
 }
 .card-full-span.card-reversed {
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: 1.15fr 0.85fr;
 }
 
 .card-full-span.card-reversed .full-span-media {
@@ -502,7 +504,7 @@
 
 .mac-content {
   width: 100%;
-  height: 350px;
+  height: auto;
   aspect-ratio: 16 / 9;
   overflow: hidden;
 }
@@ -516,8 +518,8 @@
 }
 
 .keyInfoContainer {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin: 1.35rem 0;
   padding: 3rem 1rem;
@@ -546,4 +548,32 @@
   color: var(--color-text-dim);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+
+@media (max-width: 600px) {
+  .glass-card,
+  .card-full-span {
+    padding: 1.5rem !important;
+  }
+
+  .mac-dots {
+    width: 50px;
+  }
+
+  .mac-status {
+    width: 50px;
+  }
+
+  .keyInfoContainer {
+    padding: 0.5rem;
+    margin: 1rem -0.5rem;
+  }
+
+  .keyInfoValue {
+    font-size: 0.8rem;
+      }
+
+  .keyInfoLabel{
+    font-size: 0.65rem;
+  }
 }

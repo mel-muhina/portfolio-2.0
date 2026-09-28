@@ -109,7 +109,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className={styles['glass-footer']} id={'contact'}>
+    <footer className={styles['glass-footer']} id='contact'>
       <div className={`${styles['content-constraint']} ${styles['footer-content']}`}>
         <div className={styles['footer-columns-grid']}>
           {/* Col 1: Brand */}

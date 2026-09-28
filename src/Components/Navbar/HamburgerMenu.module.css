@@ -1,0 +1,65 @@
+.hamburgerBtn {
+  display: none;
+}
+
+.dropdown {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .hamburgerBtn {
+    display: flex;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dropdown {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+
+    width: 100%;
+    flex-basis: 100%;
+
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 0.5rem;
+  }
+
+  .dropdown.show {
+    display: flex;
+  }
+
+  .mobileLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    text-decoration: none;
+    font-family: var(--font-outfit, sans-serif);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 10px 16px;
+    border-radius: 9999px;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+  }
+
+  .mobileLink:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mobileLink.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.14);
+  }
+}

@@ -233,3 +233,20 @@
   background: var(--color-secondary);
   box-shadow: 0 0 8px var(--color-secondary);
 }
+
+@media screen and (max-width: 650px) {
+  .glass-milestone-card {
+    padding: 1rem;
+  }
+
+  .career-timeline-deck {
+    padding-left: 0;
+  }
+  .spine-orb-anchor {
+    display: none;
+  }
+
+  .vertical-luminescence-spine {
+    display: none;
+  }
+}

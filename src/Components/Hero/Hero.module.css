@@ -9,6 +9,19 @@
   align-items: center;
 }
 
+.heroSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -2rem;
+  bottom: 0;
+  width: 120%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 35%, transparent 100%);
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+}
+
 .heroCanvas {
   position: absolute;
   top: 0;
@@ -245,8 +258,9 @@
 @media screen and (max-width: 768px) {
   .heroContent {
     margin-left: 24px;
-    margin-bottom: 40px;
+    margin-bottom: 0;
     max-width: 90%;
+
   }
 
   .heroName {
@@ -272,5 +286,35 @@
 
   .scrollIndicator {
     display: none;
+  }
+
+  .heroSection {
+    height: auto;
+  }
+
+  .heroSection::before {
+    opacity: 1;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 75%, transparent 100%);
+  }
+
+  .heroCanvas {
+    top: auto;
+  }
+
+  .heroSubtitle {
+    display: none;
+    font-size: 1.6rem;
+    width: 60%;
+  }
+
+  .heroBio {
+    width: 80%;
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .heroSection::before {
+    opacity: 1;
   }
 }

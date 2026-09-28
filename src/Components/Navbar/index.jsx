@@ -1,41 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Navbar.module.css';
+import { HamburgerMenu } from './HamburgerMenu.tsx';
+
+const NAV_LINKS = [
+  { id: 'skills', label: 'Skills' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'contact', label: 'Contact' }
+];
 
 export const Navbar = () => {
-  const [activeSection, setActiveSection] = useState('work');
+  const [activeSection, setActiveSection] = useState('home');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-
-      if (scrollY < windowHeight * 0.7) {
-        setActiveSection('home');
-      } else {
-        const aboutEl = document.getElementById('about');
-        const projectsEl = document.getElementById('projects');
-        const contactEl = document.getElementById('contact');
-
-        const positions = [
-          { id: 'projects', top: projectsEl?.getBoundingClientRect().top ?? 9999 },
-          { id: 'about', top: aboutEl?.getBoundingClientRect().top ?? 9999 },
-          { id: 'contact', top: contactEl?.getBoundingClientRect().top ?? 9999 },
-        ];
-
-        const inView = positions.filter((p) => p.top <= windowHeight * 0.4);
-        if (inView.length > 0) {
-          const closest = inView[inView.length - 1];
-          setActiveSection(closest.id);
-        }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10) {
+        return setActiveSection('contact');
       }
-    };
+      const sections = ['contact', 'experience', 'projects', 'skills', 'home'];
 
+      const current = sections.find(id => {
+        const el = document.getElementById(id);
+        return el && el.getBoundingClientRect().top <= window.innerHeight * 0.3;
+      });
+      if (current) setActiveSection(current);
+    };
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (e, id) => {
     e.preventDefault();
+    setIsMenuOpen(false);
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -44,60 +42,40 @@ export const Navbar = () => {
 
   return (
     <header className={styles.header}>
-      <nav className={styles.navPill} aria-label="Primary navigation">
-        <div className={styles.nameContainer}>
+      <nav className={`${styles.navPill} ${isMenuOpen ? styles.menuOpen : ''}`} aria-label="Primary navigation">
+        <div className={styles.topBar}>
           <a
             href="/home"
             onClick={(e) => scrollToSection(e, 'home')}
-            className={`${styles.navLink} ${activeSection === 'home' ? styles.active : ''}`}
-            data-interactive="true"
+            className={`${styles.brandLink} ${activeSection === 'home' ? styles.activeBrand : ''}`}
           >
-          <span className={styles['brand-name']}>MEL MUHINA</span>
+            <span className={styles['brand-name']}>MEL MUHINA</span>
           </a>
+          <HamburgerMenu
+            isOpen={isMenuOpen}
+            toggle={() => setIsMenuOpen(!isMenuOpen)}
+            activeSection={activeSection}
+            onNavigate={scrollToSection}
+            links={NAV_LINKS}
+          />
         </div>
-        <a
-          href="/skills"
-          onClick={(e) => scrollToSection(e, 'skills')}
-          className={`${styles.navLink} ${activeSection === 'skills' ? styles.active : ''}`}
-          data-interactive="true"
-        >
-          <span className={styles.linkText}>Skills</span>
-        </a>
 
-        <span className={styles.divider} aria-hidden="true" />
-
-
-        <a
-          href="/projects"
-          onClick={(e) => scrollToSection(e, 'projects')}
-          className={`${styles.navLink} ${activeSection === 'projects' ? styles.active : ''}`}
-          data-interactive="true"
-        >
-          <span className={styles.linkText}>Projects</span>
-        </a>
-
-        <span className={styles.divider} aria-hidden="true" />
-
-        <a
-          href="/experience"
-          onClick={(e) => scrollToSection(e, 'experience')}
-          className={`${styles.navLink} ${activeSection === 'experience' ? styles.active : ''}`}
-          data-interactive="true"
-        >
-          <span className={styles.linkText}>Experience</span>
-        </a>
-
-        <span className={styles.divider} aria-hidden="true" />
-
-
-        <a
-          href="/contact"
-          onClick={(e) => scrollToSection(e, 'contact')}
-          className={`${styles.navLink} ${activeSection === 'contact' ? styles.active : ''}`}
-          data-interactive="true"
-        >
-          <span className={styles.linkText}>Contact</span>
-        </a>
+        <div className={styles.desktopLinks}>
+          {NAV_LINKS.map((link, index) => (
+            <React.Fragment key={link.id}>
+              <a
+                href={`#${link.id}`}
+                onClick={(e) => scrollToSection(e, link.id)}
+                className={`${styles.navLink} ${activeSection === link.id ? styles.active : ''}`}
+              >
+                <span className={styles.linkText}>{link.label}</span>
+              </a>
+              {index < NAV_LINKS.length - 1 && (
+                <span className={styles.divider} aria-hidden="true" />
+              )}
+            </React.Fragment>
+          ))}
+        </div>
       </nav>
     </header>
   );

@@ -1,11 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './Hero.module.css';
 
-const TOTAL_FRAMES = 64;
-const TOTAL_TRANSITIONS = 10;
+const TOTAL_FRAMES = 63;
+const TOTAL_TRANSITIONS = 9;
 const BG_COLOR = '#212455';
 
-// Shortest-path circular angular lerp
 function lerpAngle(current, target, factor) {
   let diff = (target - current) % (2 * Math.PI);
   if (diff < -Math.PI) diff += 2 * Math.PI;
@@ -14,6 +13,7 @@ function lerpAngle(current, target, factor) {
 }
 
 export const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
   const canvasRef = useRef(null);
   const framesRef = useRef([]);
   const transitionsRef = useRef([]);
@@ -37,12 +37,18 @@ export const Hero = () => {
     idleTimer: null,
   });
 
-  // Preload all 64 rotation frames + 10 transition frames + center neutral frame
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
     const frames = new Array(TOTAL_FRAMES);
     const transitions = new Array(TOTAL_TRANSITIONS);
 
-    // Preload center neutral frame (directly forward gaze)
     const centerImg = new Image();
     centerImg.src = '/frames/center.webp';
     centerImg.onerror = () => {
@@ -77,10 +83,12 @@ export const Hero = () => {
       transitionsRef.current = [];
       centerImgRef.current = null;
     };
-  }, []);
+  }, [isMobile]);
 
   // Main 60 FPS Canvas Render Loop
   useEffect(() => {
+    if (isMobile) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d', { alpha: false });
@@ -146,7 +154,6 @@ export const Hero = () => {
       const dt = Math.min((now - state.lastTime) / 1000, 0.1);
       state.lastTime = now;
 
-      // 1. Calculate character dimensions with object-fit: cover
       const nativeW = 1920;
       const nativeH = 1080;
       const scale = Math.max(w / nativeW, h / nativeH);
@@ -155,11 +162,9 @@ export const Hero = () => {
       const offsetX = (w - imgW) / 2;
       const offsetY = (h - imgH) / 2;
 
-      // Exact face center coordinates for character (X: 60.0%, Y: 42.0%)
       const faceScreenX = offsetX + imgW * 0.600;
       const faceScreenY = offsetY + imgH * 0.420;
 
-      // Deadzone thresholds (within ~12% screen radius for direct forward gaze, with 18% exit hysteresis):
       const enterDeadzoneRadius = Math.min(w, h) * 0.12;
       const exitDeadzoneRadius = Math.min(w, h) * 0.18;
 
@@ -174,11 +179,7 @@ export const Hero = () => {
         let adjDx = dx;
         let adjDy = dy;
 
-        // 1. Navigation bar vs Top-Right:
-        // When in the top-right area (mouseX > 1250 / right of nav bar),
-        // she continues looking smoothly to the top-right.
-        // When the mouse approaches the nav bar (centered at x = 50% * w, y < 120px),
-        // it smoothly transitions to looking UP (frame 0).
+        // Navigation bar vs Top-Right:
         if (state.mouseY < h * 0.35) {
           if (state.mouseX >= w * 0.35 && state.mouseX <= w * 0.65 && state.mouseY < 120) {
             const navProximity = Math.max(0, Math.min(1, (120 - state.mouseY) / 80));
@@ -186,10 +187,7 @@ export const Hero = () => {
           }
         }
 
-        // 2. Middle bottom of the screen:
-        // The character is positioned slightly to the right (X: 60%).
-        // When the cursor is in the middle-bottom or below the character (mouseX from 35% to 75% of screen),
-        // she looks solidly DOWN (frame 32) without swinging prematurely to the right or left.
+        // Middle bottom of the screen:
         if (state.mouseY > h * 0.60) {
           const bottomWeight = Math.max(0, Math.min(1, (state.mouseY - h * 0.60) / (h * 0.25)));
           const centerSpan = w * 0.55;
@@ -206,7 +204,6 @@ export const Hero = () => {
         if (targetAngle < 0) targetAngle += 2 * Math.PI;
       }
 
-      // Check user intent:
       // Return to middle if: mouse out of window, idle, or cursor within ~12% radius of face
       // Resume tracking if: cursor moves outside 18% radius while mouse is active
       const wantCenter = !state.isMouseInWindow || state.isIdle || !state.hasMoved || dist <= enterDeadzoneRadius;
@@ -241,8 +238,8 @@ export const Hero = () => {
         case 'TRACKING': {
           if (wantCenter) {
             state.mode = 'TO_UP';
+            state.transitionIndex = 9.0;
           } else {
-            // Silky smooth, framerate-independent angular tracking across all 8 directions & corners
             const lerpFactor = 1 - Math.exp(-dt * 13);
             state.smoothedAngle = lerpAngle(state.smoothedAngle, targetAngle, lerpFactor);
             let norm = state.smoothedAngle % (2 * Math.PI);
@@ -254,11 +251,9 @@ export const Hero = () => {
 
         case 'TO_UP': {
           if (wantTrack) {
-            // Seamlessly resume cursor tracking without jumping
             state.mode = 'TRACKING';
             state.smoothedAngle = (state.currentRotationIndex / TOTAL_FRAMES) * 2 * Math.PI;
           } else {
-            // Smoothly rotate along shortest circular path to UP (frame 0)
             const distCW = (TOTAL_FRAMES - state.currentRotationIndex) % TOTAL_FRAMES;
             const distCCW = state.currentRotationIndex;
             const step = Math.max(1, Math.round(dt * 70));
@@ -287,7 +282,6 @@ export const Hero = () => {
           if (wantTrack) {
             state.mode = 'FROM_CENTER';
           } else {
-            // Smooth, unhurried tilt into middle with natural blink (~0.50s)
             state.transitionIndex += dt * 18;
             if (state.transitionIndex >= 9.0) {
               state.transitionIndex = 9.0;
@@ -298,7 +292,6 @@ export const Hero = () => {
         }
       }
 
-      // 2. Select EXACT single crisp frame at 100% opacity (no alpha ghosting, zero popping)
       let imgToDraw = null;
       const centerImg = centerImgRef.current;
       const frames = framesRef.current;
@@ -317,7 +310,6 @@ export const Hero = () => {
         imgToDraw = centerImg;
       }
 
-      // 3. Clear canvas with exact character background color and draw crisp frame
       ctx.fillStyle = BG_COLOR;
       ctx.fillRect(0, 0, w, h);
 
@@ -340,11 +332,20 @@ export const Hero = () => {
       cancelAnimationFrame(animId);
       if (cleanupState.idleTimer) clearTimeout(cleanupState.idleTimer);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
-    <section className={styles.heroSection} id="home" aria-label="Hero Introduction">
-      <canvas ref={canvasRef} className={styles.heroCanvas} />
+    <section className={styles.heroSection} id="home" aria-label="mel muhina introduction">
+      {isMobile ? (
+        <img
+          src="/frames/center.webp"
+          alt="Mel Muhina"
+          className={styles.heroCanvas}
+          style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0, backgroundColor: BG_COLOR }}
+        />
+      ) : (
+        <canvas ref={canvasRef} className={styles.heroCanvas} />
+      )}
 
       <div className={styles.heroContent}>
         <div className={styles.greetingWrapper}>

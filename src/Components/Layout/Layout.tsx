@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import styles from './Layout.module.css';
 import Header from './Header';
 import Footer from './Footer';
+import { ScrollToTopButton } from '../ScrollToTopButton/ScrollToTopButton';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
@@ -19,6 +20,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           {children}
         </main>
         <Footer />
+        <ScrollToTopButton />
       </div>
     </>
   );
