@@ -26,7 +26,7 @@
       "Jest",
       "Playwright"
     ],
-    "imageSrc": "ucl.jpg"
+    "imageSrc": "ucl-logo.webp"
   },
   {
     "role": "Software Engineer",
@@ -53,7 +53,7 @@
       "Gherkin",
       "Cypress"
     ],
-    "imageSrc": "Ford.webp"
+    "imageSrc": "ford-logo.webp"
   },
   {
     "role": "Frontend Developer (Volunteer)",
@@ -80,7 +80,7 @@
       "React",
       "Node.js"
     ],
-    "imageSrc": "smallpeice.png"
+    "imageSrc": "smallpeice-logo.webp"
   },
   {
     "role": "Tech Trainee",
@@ -106,6 +106,6 @@
       "CSS",
       "HTML"
     ],
-    "imageSrc": "LaFosse.jpeg"
+    "imageSrc": "lafosse-logo.webp"
   }
 ]

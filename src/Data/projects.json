@@ -6,7 +6,9 @@
     "languages": ["React", "Typescript", "Java / Springboot", "MySQL", "CSS / SCSS", "Figma", "Machine Learning"],
     "demo": "https://youtu.be/ee2a17kVje0",
     "source": "https://github.com/mel-muhina/pawprint",
-    "imageSrc": "pawprint.webp",
+    "source-backend": "https://github.com/mel-muhina/pawprint-be",
+    "source-frontend": "https://github.com/mel-muhina/pawprint",
+    "imageSrc": "pawprint-results.webp",
     "category": "Fullstack",
     "keyInfo": [
       ["Machine Learning", "Breed Prediction"],
@@ -17,14 +19,14 @@
     "header": "EDTECH PLATFORM // RECOMMENDATION ENGINE",
     "title": "Smallpeice Engineer",
     "description": "This was a two month volunteering project for Smallpeice Trust. The aim was to make a mobile-first app to aid 16-18 year olds with potential engineering careers. ",
-    "languages": ["React", "Typescript", "NextJS", "AWS","CSS / SCSS", "TailWindCSS", "Figma"],
+    "languages": ["React", "Javascript", "NextJS", "AWS","CSS / SCSS", "TailWindCSS", "Figma"],
     "demo": "https://www.youtube.com/shorts/2HtyYHEcSxI",
-    "source": "https://frontend-xi-five-65.vercel.app/",
+    "source": "https://github.com/mel-muhina/smallpeice-frontend",
     "imageSrc": "careersgif.JPG",
     "category": "Fullstack",
     "keyInfo": [
       ["Machine Learning", "Career Recommendation"],
-      ["Architecture", "React / Typescript"]
+      ["Architecture", "React / Javascript / NextJS"]
     ]
   },
   {
@@ -58,7 +60,7 @@
     "languages": ["Node.js", "SQL", "Javascript", "HTML", "CSS / SCSS", "Figma"],
     "demo": "https://youtu.be/REd_lRZaYTw",
     "source": "https://github.com/mel-muhina/Blizzard",
-    "imageSrc": "timelessadvisor.JPG",
+    "imageSrc": "timelessAdvisor-chooseans.webp",
     "category": "Fullstack"
   },
   {
@@ -67,6 +69,7 @@
     "description": "A project focused on creating a banking app with sleek UI and implementing new techniques learned in React.",
     "languages": ["React", "Javascript", "HTML", "CSS / SCSS", "Figma"],
     "demo": "https://mel-muhina.github.io/draftBanking/",
+    "liveDemo": "https://mel-muhina.github.io/draftBanking/",
     "source": "https://github.com/mel-muhina/draftBanking",
     "imageSrc": "draftbanking.jpg",
     "category": "Fullstack"

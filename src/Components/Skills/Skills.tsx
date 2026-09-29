@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import styles from './Skills.module.css';
-import skills from '../Data/skills.json';
+import skills from '../../Data/skills.json';
 
 type Category = 'frontend' | 'backend' | 'cloud';
 type Skill = { title: string; imageSrc: string; category: Category };
@@ -64,11 +64,8 @@ export const Skills = () => {
               {col.label}
             </div>
             <div className={styles['arsenal-badge-flow']}>
-              {grouped[col.key].map((skill) => (
-                <>
-
-                <span key={skill.title} className={styles['frosted-badge']}>
-
+              {grouped[col.key].map((skill, index) => (
+                <span key={`${skill.title}-${index}`} className={styles['frosted-badge']}>
                   <img
                     src={getSkillIcon(skill.imageSrc)}
                     alt={skill.title}
@@ -77,7 +74,6 @@ export const Skills = () => {
                   {skill.title}
                   {featuredSkills.includes(skill.title) && <span className={styles['badge-amber-dot']}></span>}
                 </span>
-                  </>
               ))}
             </div>
           </div>
