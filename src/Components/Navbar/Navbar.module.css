@@ -1,6 +1,6 @@
 .header {
   position: fixed;
-  top: 16px;
+  top: 12px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
@@ -15,7 +15,7 @@
   font-family: var(--font-display, sans-serif);
   display: flex;
   align-items: center;
-  padding: 8px 12px 8px 22px;
+  padding: 0.3rem 0.8rem 0.3rem 1.2rem;
   background: rgba(18, 18, 22, 0.65);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
