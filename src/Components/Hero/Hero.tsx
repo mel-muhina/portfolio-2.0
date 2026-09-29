@@ -317,6 +317,14 @@ export const Hero = () => {
         ctx.drawImage(imgToDraw, offsetX, offsetY, imgW, imgH);
       }
 
+      if (imgToDraw && imgToDraw.complete && imgToDraw.naturalWidth > 0) {
+        ctx.fillStyle = BG_COLOR;
+        ctx.fillRect(0, 0, w, h);
+        ctx.drawImage(imgToDraw, offsetX, offsetY, imgW, imgH);
+      } else {
+        ctx.clearRect(0, 0, w, h);
+      }
+
       animId = requestAnimationFrame(render);
     };
 

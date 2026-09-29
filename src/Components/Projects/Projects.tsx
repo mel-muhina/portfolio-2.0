@@ -25,7 +25,7 @@ const FILTERS: { key: FilterType; label: string }[] = [
   { key: 'ai', label: 'AI & Data' },
 ];
 
-export default function Projects() {
+export const Projects = () => {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
 
   const allProjects = projects as Project[];

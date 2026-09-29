@@ -15,7 +15,7 @@ const COLUMNS: { key: Category; label: string; icon: string }[] = [
 
 const featuredSkills = ['React', 'Node.js', 'Typescript', 'Javascript', 'FastAPI', 'Python', 'Java'];
 
-export default function Skills() {
+export const Skills = () => {
   const grouped = useMemo(() => {
     const buckets: Record<Category, Skill[]> = {
       frontend: [],

@@ -1,10 +1,9 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import styles from './Layout.module.css';
-import Header from './Header';
-import Footer from './Footer';
+import Footer from '../Footer/Footer';
 import { ScrollToTopButton } from '../ScrollToTopButton/ScrollToTopButton';
 
-export default function Layout({ children }: { children: ReactNode }) {
+export const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <div className={styles['cosmic-layer']}>

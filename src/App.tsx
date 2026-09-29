@@ -1,10 +1,6 @@
 import './App.css';
 import './globals.css';
-import { Navbar, About, Hero, Experience, Footer } from './Components';
-import Layout from './Components/Layout/Layout.tsx';
-import Timeline from './Components/Timeline/Timeline.tsx';
-import Skills from './Skills/Skills.tsx';
-import Projects from './Components/Projects/Projects.tsx';
+import { Navbar, Hero, Layout, Timeline, Skills, Projects } from './Components';
 
 function App() {
   return (
