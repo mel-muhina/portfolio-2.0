@@ -5,6 +5,10 @@
   min-height: 600px;
   overflow: hidden;
   /*background-color: var(--color-bg);*/
+  background-image: url('public/frames/center.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-color: transparent;
   display: flex;
   align-items: center;
