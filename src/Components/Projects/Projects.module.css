@@ -635,3 +635,13 @@
     bottom: 0;
   }
 }
+
+.media-stack {
+  position: relative;
+  padding: 0 40px 20px;
+}
+
+.card-reversed .phone-overlay {
+  right: auto;
+  left: 25px;
+}
