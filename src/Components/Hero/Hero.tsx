@@ -14,6 +14,7 @@ function lerpAngle(current, target, factor) {
 
 export const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [ready, setReady] = useState(false);
   const canvasRef = useRef(null);
   const framesRef = useRef([]);
   const transitionsRef = useRef([]);
@@ -49,20 +50,31 @@ export const Hero = () => {
     const frames = new Array(TOTAL_FRAMES);
     const transitions = new Array(TOTAL_TRANSITIONS);
 
+    const total = 1 + TOTAL_FRAMES + TOTAL_TRANSITIONS;
+    let loaded = 0;
+    const onOne = () => {
+      loaded++;
+      if (loaded >= total) setReady(true);
+    };
+
     const centerImg = new Image();
-    centerImg.src = '/frames/center.webp';
+    centerImg.onload = onOne;
     centerImg.onerror = () => {
+      centerImg.onload = onOne;
       centerImg.src = '/center.webp';
     };
+    centerImg.src = '/frames/center.webp';
     centerImgRef.current = centerImg;
 
     // Preload 64 circular rotation frames (all 8 compass directions + corners)
     for (let i = 0; i < TOTAL_FRAMES; i++) {
       const img = new Image();
-      img.src = `/frames/frame_${i}.webp`;
+      img.onload = onOne;
       img.onerror = () => {
+        img.onload = onOne;
         img.src = `/frames/${i}.webp`;
       };
+      img.src = `/frames/frame_${i}.webp`;
       frames[i] = img;
     }
     framesRef.current = frames;
@@ -70,10 +82,11 @@ export const Hero = () => {
     // Preload 10 transition frames (UP -> CENTER with natural blink)
     for (let i = 0; i < TOTAL_TRANSITIONS; i++) {
       const img = new Image();
-      img.src = `/frames/transition_${i}.webp`;
+      img.onload = onOne;
       img.onerror = () => {
         img.src = '/frames/center.webp';
       };
+      img.src = `/frames/transition_${i}.webp`;
       transitions[i] = img;
     }
     transitionsRef.current = transitions;
@@ -82,6 +95,7 @@ export const Hero = () => {
       framesRef.current = [];
       transitionsRef.current = [];
       centerImgRef.current = null;
+      setReady(false);
     };
   }, [isMobile]);
 
@@ -346,10 +360,15 @@ export const Hero = () => {
     <section className={styles.heroSection} id="home" aria-label="mel muhina introduction">
 
       <img
-        src="/frames/center.webp"
+        src="/backup-img.webp"
         alt="Mel Muhina"
         className={styles.heroCanvas}
-        style={{ zIndex: 0 }}
+        style={{
+          zIndex: 2,
+          opacity: ready ? 0 : 1,
+          transition: 'opacity 0.4s ease',
+          pointerEvents: 'none',
+        }}
       />
 
       {isMobile ? (
@@ -360,7 +379,7 @@ export const Hero = () => {
           style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0, backgroundColor: BG_COLOR }}
         />
       ) : (
-        <canvas ref={canvasRef} className={styles.heroCanvas} />
+        <canvas ref={canvasRef} className={styles.heroCanvas} style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.4s ease' }}/>
       )}
 
       <div className={styles.heroContent}>
