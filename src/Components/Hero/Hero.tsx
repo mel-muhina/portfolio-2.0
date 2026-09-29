@@ -344,6 +344,14 @@ export const Hero = () => {
 
   return (
     <section className={styles.heroSection} id="home" aria-label="mel muhina introduction">
+
+      <img
+        src="/frames/center.webp"
+        alt="Mel Muhina"
+        className={styles.heroCanvas}
+        style={{ zIndex: 0 }}
+      />
+
       {isMobile ? (
         <img
           src="/frames/center.webp"
