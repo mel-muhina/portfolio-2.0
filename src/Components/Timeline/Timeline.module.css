@@ -72,8 +72,8 @@
 
 .glass-milestone-card {
   background: var(--bg-glass-card);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border-glass-bright);
   border-radius: var(--radius-xl);
   padding: 2.25rem;

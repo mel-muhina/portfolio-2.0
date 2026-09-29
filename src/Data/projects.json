@@ -1,13 +1,13 @@
 [
   {
     "header": "APPLICATION ARCHITECTURE // PREDICTIVE INTEGRATION",
-    "title": "Paw Print",
+    "title": "PawPrint",
     "description": "Collaboration with a data engineer who created a machine learning model to predict the breed of a dog from an image. I created the design, frontend, backend and database.",
     "languages": ["React", "Typescript", "Java / Springboot", "MySQL", "CSS / SCSS", "Figma", "Machine Learning"],
     "demo": "https://youtu.be/ee2a17kVje0",
     "source": "https://github.com/mel-muhina/pawprint",
-    "source-backend": "https://github.com/mel-muhina/pawprint-be",
-    "source-frontend": "https://github.com/mel-muhina/pawprint",
+    "sourceBackend": "https://github.com/mel-muhina/pawprint-be",
+    "sourceFrontend": "https://github.com/mel-muhina/pawprint",
     "imageSrc": "pawprint-results.webp",
     "category": "Fullstack",
     "keyInfo": [
@@ -16,17 +16,34 @@
     ]
   },
   {
+    "header": "SEAMLESS API INTEGRATION // NEXT.JS BOOK EXPLORER",
+    "title": "BookTok",
+    "description": "Integration with Gutendex API to create a classic book search platform using Next.js.",
+    "languages": ["React", "Typescript", "Next.js", "Cypress", "CSS / SCSS"],
+    "demo": "https://booktok-qyl8.onrender.com",
+    "liveDemo": "https://booktok-qyl8.onrender.com",
+    "source": "https://github.com/mel-muhina/booktok/",
+    "imageSrc": "booktok-second.webp",
+    "category": "Frontend",
+    "keyInfo": [
+      ["API Integration", "Book Search"],
+      ["Architecture", "React / Typescript / Next.js"]
+    ]
+  },
+  {
     "header": "EDTECH PLATFORM // RECOMMENDATION ENGINE",
     "title": "Smallpeice Engineer",
-    "description": "This was a two month volunteering project for Smallpeice Trust. The aim was to make a mobile-first app to aid 16-18 year olds with potential engineering careers. ",
-    "languages": ["React", "Javascript", "NextJS", "AWS","CSS / SCSS", "TailWindCSS", "Figma"],
+    "description": "This was a mobile-first app to aid 16-18 year olds with potential engineering careers. The app uses a recommendation engine to suggest careers based on user input. This was a two month volunteering project for Smallpeice Trust.",
+    "languages": ["Mobile First","React", "Javascript", "Next.js", "AWS","CSS / SCSS", "TailWind CSS", "Figma"],
     "demo": "https://www.youtube.com/shorts/2HtyYHEcSxI",
     "source": "https://github.com/mel-muhina/smallpeice-frontend",
     "imageSrc": "careersgif.JPG",
-    "category": "Fullstack",
+    "mobileImageSrc": "smallpeice-mobile2.webp",
+    "category": "Frontend",
+    "mobileFirst": true,
     "keyInfo": [
-      ["Machine Learning", "Career Recommendation"],
-      ["Architecture", "React / Javascript / NextJS"]
+      ["AI Integration", "Career Recommendation"],
+      ["Architecture", "React / Javascript / Next.js"]
     ]
   },
   {
@@ -37,7 +54,7 @@
     "demo": "https://youtu.be/nb9gfPYcVs8",
     "source": "https://github.com/mel-muhina/final-project-frontend/",
     "imageSrc": "natureConnect.png",
-    "category": "Fullstack",
+    "category": "Frontend",
     "keyInfo": [
       ["Machine Learning", "Green Space Recommendation"],
       ["Architecture", "React / Javascript / Node.js"]

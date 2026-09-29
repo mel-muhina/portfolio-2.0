@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import styles from './Projects.module.css';
 import projects from '../../Data/projects.json';
 
-type Category = 'Fullstack' | 'realtime' | 'ai';
+type Category = 'Fullstack' | 'Frontend';
 type FilterType = 'all' | Category;
 
 type Project = {
@@ -10,10 +10,15 @@ type Project = {
   description: string;
   languages: string[];
   demo: string;
+  liveDemo?: string;
   source: string;
+  sourceFrontend?: string;
+  sourceBackend?: string;
   imageSrc: string;
   category: Category;
   keyInfo: string[];
+  mobileFirst?: boolean;
+  mobileImageSrc?: string;
 };
 
 const getProjectImage = (fileName: string) => `/projects/${fileName}`;
@@ -21,8 +26,7 @@ const getProjectImage = (fileName: string) => `/projects/${fileName}`;
 const FILTERS: { key: FilterType; label: string }[] = [
   { key: 'all', label: 'All Projects' },
   { key: 'Fullstack', label: 'Full-Stack' },
-  { key: 'realtime', label: 'Cloud & Real-time' },
-  { key: 'ai', label: 'AI & Data' },
+  { key: 'Frontend', label: 'Frontend' }
 ];
 
 export const Projects = () => {
@@ -31,7 +35,7 @@ export const Projects = () => {
   const allProjects = projects as Project[];
 
   const visibleProjects = useMemo(() => {
-    if (activeFilter === 'all') return allProjects;
+    if (activeFilter === 'all') return allProjects.slice(0, 6);
     return allProjects.filter((p) => p.category === activeFilter);
   }, [activeFilter, allProjects]);
 
@@ -50,26 +54,25 @@ export const Projects = () => {
         </p>
       </div>
 
-      {/*Not needed for now - decide what to filter by*/}
-      {/*<div className={styles['glass-filter-bar']}>*/}
-      {/*  {FILTERS.map((filter) => {*/}
-      {/*    const count =*/}
-      {/*      filter.key === 'all'*/}
-      {/*        ? allProjects.length*/}
-      {/*        : allProjects.filter((p) => p.category === filter.key).length;*/}
-      {/*    return (*/}
-      {/*      <button*/}
-      {/*        key={filter.key}*/}
-      {/*        className={`${styles['filter-chip-btn']} ${*/}
-      {/*          activeFilter === filter.key ? styles.active : ''*/}
-      {/*        }`}*/}
-      {/*        onClick={() => setActiveFilter(filter.key)}*/}
-      {/*      >*/}
-      {/*        {filter.label} ({count})*/}
-      {/*      </button>*/}
-      {/*    );*/}
-      {/*  })}*/}
-      {/*</div>*/}
+      <div className={styles['glass-filter-bar']}>
+        {FILTERS.map((filter) => {
+          const count =
+            filter.key === 'all'
+              ? allProjects.length
+              : allProjects.filter((p) => p.category === filter.key).length;
+          return (
+            <button
+              key={filter.key}
+              className={`${styles['filter-chip-btn']} ${
+                activeFilter === filter.key ? styles.active : ''
+              }`}
+              onClick={() => setActiveFilter(filter.key)}
+            >
+              {filter.label} ({count})
+            </button>
+          );
+        })}
+      </div>
 
       <div className={styles['glass-bento-grid']}>
         {visibleProjects.map((project, index) => {
@@ -170,6 +173,17 @@ export const Projects = () => {
                   />
                 </div>
               </div>
+                {project.mobileFirst && (
+                  <div className={styles['phone-overlay']}>
+                    <div className={styles['phone-notch']}></div>
+                    <div className={styles['phone-screen']}>
+                      <img
+                        src={getProjectImage(project.mobileImageSrc ?? project.imageSrc)}
+                        alt={`${project.title} mobile view`}
+                      />
+                    </div>
+                  </div>
+                )}
             </div>
             </div>
           );
