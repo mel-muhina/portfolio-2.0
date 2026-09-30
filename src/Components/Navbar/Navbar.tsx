@@ -49,7 +49,7 @@ export const Navbar = () => {
             onClick={(e) => scrollToSection(e, 'home')}
             className={`${styles.brandLink} ${activeSection === 'home' ? styles.activeBrand : ''}`}
           >
-            <span className={styles['brand-name']}>MEL MUHINA</span>
+            <span className={styles.brandName}>MEL MUHINA</span>
           </a>
           <HamburgerMenu
             isOpen={isMenuOpen}

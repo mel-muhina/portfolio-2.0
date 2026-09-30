@@ -21,25 +21,3 @@ html, body {
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
-
-/*.App {*/
-/*  background-color: var(--color-bg);*/
-/*  width: 100%;*/
-/*  min-height: 100vh;*/
-/*  position: relative;*/
-/*  overflow-x: hidden;*/
-/*}*/
-
-/*main {*/
-/*  width: 100%;*/
-/*  position: relative;*/
-/*}*/
-
-/*.innerContainer {*/
-/*  position: relative;*/
-/*  width: 100%;*/
-/*  background: linear-gradient(180deg, #0b0c20 0%, #0e112d 35%, #070817 100%);*/
-/*  padding-top: 40px;*/
-/*  padding-bottom: 80px;*/
-/*  z-index: 10;*/
-/*}*/
