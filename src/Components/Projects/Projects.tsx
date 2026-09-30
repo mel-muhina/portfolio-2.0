@@ -127,15 +127,41 @@ export const Projects = () => {
                   <span>{project.liveDemo ? 'Live Demo' : 'Watch Demo'}</span>
                   <Icon name="north_east" />
                 </a>
-                <a
-                  className={styles.linkActionGhost}
-                  href={project.source}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon name="code" />
-                  <span>Inspect Source</span>
-                </a>
+                {project.sourceFrontend &&  (
+                  <a
+                    className={styles.linkActionGhost}
+                    href={project.sourceFrontend}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Icon name="code" />
+                    <span>Inspect Frontend</span>
+                  </a>
+                )}
+
+                {project.sourceBackend && (
+                  <a
+                    className={styles.linkActionGhost}
+                    href={project.sourceBackend}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Icon name="code" />
+                    <span>Inspect Backend</span>
+                  </a>
+                )}
+                {project.source && !project.sourceFrontend && !project.sourceBackend && (
+                  <a
+                    className={styles.linkActionGhost}
+                    href={project.source}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Icon name="code" />
+                    <span>Inspect Source</span>
+                  </a>
+                )}
+
               </div>
             </div>
 
