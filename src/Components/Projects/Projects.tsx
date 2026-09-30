@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import styles from './Projects.module.css';
 import projects from '../../Data/projects.json';
 
@@ -21,174 +21,155 @@ type Project = {
   mobileImageSrc?: string;
 };
 
+const PROJECTS = projects as Project[];
+const MAX_VISIBLE = 6;
+const ICON_SIZE = { fontSize: '16px' } as const;
+
 const getProjectImage = (fileName: string) => `/projects/${fileName}`;
 
 const FILTERS: { key: FilterType; label: string }[] = [
   { key: 'all', label: 'All Projects' },
   { key: 'Fullstack', label: 'Full-Stack' },
-  { key: 'Frontend', label: 'Frontend' }
+  { key: 'Frontend', label: 'Frontend' },
 ];
+
+const Icon = ({ name }: { name: string }) => (
+  <span className="material-symbols-outlined" style={ICON_SIZE}>
+    {name}
+  </span>
+);
 
 export const Projects = () => {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
 
-  const allProjects = projects as Project[];
+  const visibleProjects = useMemo(
+    () =>
+      activeFilter === 'all'
+        ? PROJECTS.slice(0, MAX_VISIBLE)
+        : PROJECTS.filter((p) => p.category === activeFilter),
+    [activeFilter],
+  );
 
-  const visibleProjects = useMemo(() => {
-    if (activeFilter === 'all') return allProjects.slice(0, 6);
-    return allProjects.filter((p) => p.category === activeFilter);
-  }, [activeFilter, allProjects]);
+  const countFor = (key: FilterType) =>
+    key === 'all' ? PROJECTS.length : PROJECTS.filter((p) => p.category === key).length;
 
   return (
-    <section className={styles['portfolio-section']} id="projects">
-      <div className={styles['section-head']}>
-        <span className={styles['eyebrow-chip']}>
-          <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>
-            terminal
-          </span>
+    <section className={styles.portfolioSection} id="projects">
+      <div className={styles.sectionHead}>
+        <span className={styles.eyebrowChip}>
+          <Icon name="terminal" />
           FLAGSHIP APPLICATIONS
         </span>
-        <h2 className={styles['section-title']}>Featured Projects</h2>
-        <p className={styles['section-desc']}>
-          End to end applications built for seamless user experiences, lightning fast performance, and rock solid reliability.
+        <h2 className={styles.sectionTitle}>Featured Projects</h2>
+        <p className={styles.sectionDesc}>
+          End to end applications built for seamless user experiences, lightning fast
+          performance, and rock solid reliability.
         </p>
       </div>
 
-      <div className={styles['glass-filter-bar']}>
-        {FILTERS.map((filter) => {
-          const count =
-            filter.key === 'all'
-              ? allProjects.length
-              : allProjects.filter((p) => p.category === filter.key).length;
-          return (
-            <button
-              key={filter.key}
-              className={`${styles['filter-chip-btn']} ${
-                activeFilter === filter.key ? styles.active : ''
-              }`}
-              onClick={() => setActiveFilter(filter.key)}
-            >
-              {filter.label} ({count})
-            </button>
-          );
-        })}
+      <div className={styles.glassFilterBar}>
+        {FILTERS.map((filter) => (
+          <button
+            key={filter.key}
+            className={`${styles.filterChipBtn} ${
+              activeFilter === filter.key ? styles.active : ''
+            }`}
+            onClick={() => setActiveFilter(filter.key)}
+          >
+            {filter.label} ({countFor(filter.key)})
+          </button>
+        ))}
       </div>
 
-      <div className={styles['glass-bento-grid']}>
-        {visibleProjects.map((project, index) => {
-          const isReversed = index % 2 === 1;
+      <div className={styles.glassBentoGrid}>
+        {visibleProjects.map((project, index) => (
+          <article
+            key={project.title}
+            className={`${styles.glassCard} ${styles.cardFullSpan} ${
+              index % 2 === 1 ? styles.cardReversed : ''
+            }`}
+          >
+            <div className={styles.fullSpanBody}>
+              <div className={styles.projMetaHeader}>
+                <span className={`${styles.eyebrowChip} ${styles.eyebrowAmber}`}>
+                  {(project.header ?? 'project').toUpperCase()}
+                </span>
+                <h3 className={styles.projTitle}>{project.title}</h3>
+                <p className={styles.projDesc}>{project.description}</p>
+              </div>
 
-          return (
-            <div
-              key={project.title}
-              className={`${styles['glass-card']} ${styles['card-full-span']} ${
-                isReversed ? styles['card-reversed'] : ''
-              }`}
-            >
-              <div className={styles['full-span-body']}>
-                <div className={styles['proj-meta-header']}>
-                  <span
-                    className={`${styles['eyebrow-chip']} ${styles['eyebrow-amber']}`}
-                  >
-                    {(project.header  ?? 'project').toUpperCase()}
-                  </span>
-                  <h3 className={styles['proj-title']}>{project.title}</h3>
-                  <p className={styles['proj-desc']}>{project.description}</p>
-                </div>
-
-               {(project.keyInfo&& (
-                 <div>
-                  <div className={styles.keyInfoContainer}>
-                    {project.keyInfo.map((info, idx) => (
-                      <span key={idx} className={styles.keyInfoItem}>
-                        <span className={styles.keyInfoValue}>{info[0]}</span>
-                        <span className={styles.keyInfoLabel}>{info[1]}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                ))}
-
-                <div
-                  className={styles['arsenal-badge-flow']}
-                  style={{ margin: '1.5rem 0' }}
-                >
-                  {project.languages.map((lang) => (
-                    <span key={lang} className={styles['frosted-badge']}>
-                      {lang}
+              {project.keyInfo && (
+                <div className={styles.keyInfoContainer}>
+                  {project.keyInfo.map(([value, label]) => (
+                    <span key={label} className={styles.keyInfoItem}>
+                      <span className={styles.keyInfoValue}>{value}</span>
+                      <span className={styles.keyInfoLabel}>{label}</span>
                     </span>
                   ))}
                 </div>
+              )}
 
-                <div className={styles['proj-footer-links']}>
-                  <a
-                    className={styles['btn-action-sm']}
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span>Watch Demo</span>
-                    <span
-                      className="material-symbols-outlined"
-                      style={{ fontSize: '16px' }}
-                    >
-                      north_east
-                    </span>
-                  </a>
-                  <a
-                    className={styles['link-action-ghost']}
-                    href={project.source}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span
-                      className="material-symbols-outlined"
-                      style={{ fontSize: '16px' }}
-                    >
-                      code
-                    </span>
-                    <span>Inspect Source</span>
-                  </a>
+              <div className={styles.arsenalBadgeFlow}>
+                {project.languages.map((lang) => (
+                  <span key={lang} className={styles.frostedBadge}>
+                    {lang}
+                  </span>
+                ))}
+              </div>
+
+              <div className={styles.projFooterLinks}>
+                <a
+                  className={styles.btnActionSm}
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>{project.liveDemo ? 'Live Demo' : 'Watch Demo'}</span>
+                  <Icon name="north_east" />
+                </a>
+                <a
+                  className={styles.linkActionGhost}
+                  href={project.source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon name="code" />
+                  <span>Inspect Source</span>
+                </a>
+              </div>
+            </div>
+
+            <div className={styles.fullSpanMedia}>
+              <div className={styles.macWindowFrame}>
+                <div className={styles.macTopbar}>
+                  <div className={styles.macDots}>
+                    <div className={`${styles.macDot} ${styles.macDotRed}`} />
+                    <div className={`${styles.macDot} ${styles.macDotYellow}`} />
+                    <div className={`${styles.macDot} ${styles.macDotGreen}`} />
+                  </div>
+                  <span className={styles.macUrl}>{project.title}</span>
+                  <span className={styles.macStatus}>v1.0</span>
+                </div>
+                <div className={styles.macContent}>
+                  <img src={getProjectImage(project.imageSrc)} alt={project.title} />
                 </div>
               </div>
 
-              <div className={styles['full-span-media']}>
-              <div className={styles['mac-window-frame']}>
-
-                <div className={styles['mac-topbar']}>
-                  <div className={styles['mac-dots']}>
-                    <div className={`${styles['mac-dot']} ${styles['mac-dot-red']}`}></div>
-                    <div className={`${styles['mac-dot']} ${styles['mac-dot-yellow']}`}></div>
-                    <div className={`${styles['mac-dot']} ${styles['mac-dot-green']}`}></div>
+              {project.mobileFirst && (
+                <div className={styles.phoneOverlay}>
+                  <div className={styles.phoneNotch} />
+                  <div className={styles.phoneScreen}>
+                    <img
+                      src={getProjectImage(project.mobileImageSrc ?? project.imageSrc)}
+                      alt={`${project.title} mobile view`}
+                    />
                   </div>
-
-                  <span className={styles['mac-url']}>{project.title}</span>
-
-                  <span className={styles['mac-status']}>v1.0</span>
                 </div>
-                <div className={styles['mac-content']}>
-                  <img
-                    src={getProjectImage(project.imageSrc)}
-                    alt={project.title}
-                  />
-                </div>
-              </div>
-                {project.mobileFirst && (
-                  <div className={styles['phone-overlay']}>
-                    <div className={styles['phone-notch']}></div>
-                    <div className={styles['phone-screen']}>
-                      <img
-                        src={getProjectImage(project.mobileImageSrc ?? project.imageSrc)}
-                        alt={`${project.title} mobile view`}
-                      />
-                    </div>
-                  </div>
-                )}
+              )}
             </div>
-            </div>
-          );
-        })}
+          </article>
+        ))}
       </div>
     </section>
   );
-}
+};

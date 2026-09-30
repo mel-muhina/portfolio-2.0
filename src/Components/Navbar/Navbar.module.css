@@ -85,38 +85,6 @@
   flex-shrink: 0;
 }
 
-
-
-/*.divider {*/
-/*  width: 3px;*/
-/*  height: 3px;*/
-/*  border-radius: 50%;*/
-/*  background: rgba(255, 255, 255, 0.25);*/
-/*}*/
-
-/*.navLink {*/
-/*  display: inline-flex;*/
-/*  align-items: center;*/
-/*  text-decoration: none;*/
-/*  font-family: var(--font-outfit);*/
-/*  font-size: 0.82rem;*/
-/*  font-weight: 600;*/
-/*  letter-spacing: 0.14em;*/
-/*  color: rgba(255, 255, 255, 0.85);*/
-/*  padding: 6px 12px;*/
-/*  border-radius: 9999px;*/
-/*  transition: color 0.25s ease, background 0.25s ease, transform 0.2s var(--ease-smooth);*/
-/*  user-select: none;*/
-/*}*/
-
-/*.nameContainer {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  align-items: center;*/
-/*  gap: 4px;*/
-/*  padding-right: 5rem;*/
-/*}*/
-
 .brand-name {
   font-size: 1.05rem;
   font-weight: 700;
@@ -158,47 +126,10 @@
   color: #ffffff;
 }
 
-/*@media screen and (max-width: 700px) {*/
-/*  .header {*/
-/*    top: 12px;*/
-/*    left: 12px;*/
-/*    right: 12px;*/
-/*  }*/
-
-/*  .navPill {*/
-/*    padding: 8px 12px;*/
-/*    gap: 8px;*/
-/*    flex-wrap: wrap;*/
-/*    justify-content: center;*/
-/*    overflow-x: auto;*/
-/*    -webkit-overflow-scrolling: touch;*/
-
-/*    scrollbar-width: none;*/
-/*    -ms-overflow-style: none;*/
-/*  }*/
-
-/*  .navPill::-webkit-scrollbar {*/
-/*    display: none;*/
-/*  }*/
-
-/*  .navLink {*/
-/*    font-size: 0.75rem;*/
-/*    padding: 4px 8px;*/
-/*    letter-spacing: 0.08em;*/
-/*    white-space: nowrap;*/
-/*  }*/
-/*}*/
-/*@media screen and (max-width: 1200px) {*/
-/*  .nameContainer {*/
-/*    padding-right: 0.5rem;*/
-/*    flex-shrink: 0;*/
-/*  }*/
-/*}*/
-
 
 @media screen and (max-width: 800px) {
   .header {
-    position: absolute; /* This stops it from following you down the page! */
+    position: absolute;
     top: 16px;
     right: 16px;
     left: auto;

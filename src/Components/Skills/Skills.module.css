@@ -1,4 +1,4 @@
-.arsenal-rack-shell {
+.arsenalRackShell {
   margin-top: 1.5rem;
   background: var(--bg-glass-card);
   backdrop-filter: blur(8px);
@@ -12,7 +12,7 @@
     inset 0 -1px 1px rgba(124, 58, 237, 0.2);
 }
 
-.arsenal-header {
+.arsenalHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,7 +21,7 @@
   border-bottom: 1px solid var(--border-glass);
 }
 
-.eyebrow-chip {
+.eyebrowChip {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -33,17 +33,23 @@
   letter-spacing: 0.12em;
 }
 
-.eyebrow-amber {
+.eyebrowAmber {
   color: var(--color-secondary);
 }
 
-.arsenal-grid {
+.evaluationStamp {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-dim);
+}
+
+.arsenalGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
-.arsenal-col-header {
+.arsenalColHeader {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   font-weight: 600;
@@ -54,13 +60,13 @@
   gap: 0.4rem;
 }
 
-.arsenal-badge-flow {
+.arsenalBadgeFlow {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
 }
 
-.frosted-badge {
+.frostedBadge {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   background: rgba(255, 255, 255, 0.04);
@@ -75,7 +81,7 @@
   cursor: default;
 }
 
-.frosted-badge:hover {
+.frostedBadge:hover {
   background: rgba(124, 58, 237, 0.18);
   border-color: var(--color-primary);
   color: #ffffff;
@@ -83,7 +89,13 @@
   box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
 }
 
-.badge-amber-dot {
+.badgeIcon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.badgeAmberDot {
   width: 6px;
   height: 6px;
   border-radius: 50%;

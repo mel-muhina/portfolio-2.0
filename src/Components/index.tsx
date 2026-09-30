@@ -1,4 +1,4 @@
-export { Navbar } from './Navbar';
+export { Navbar } from './Navbar/Navbar';
 export { Hero } from './Hero/Hero';
 export { Layout } from './Layout/Layout';
 export { Timeline } from './Timeline/Timeline';

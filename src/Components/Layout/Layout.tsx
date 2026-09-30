@@ -3,24 +3,21 @@ import styles from './Layout.module.css';
 import Footer from '../Footer/Footer';
 import { ScrollToTopButton } from '../ScrollToTopButton/ScrollToTopButton';
 
-export const Layout = ({ children }: { children: ReactNode }) => {
-  return (
-    <>
-      <div className={styles['cosmic-layer']}>
-        <div className={`${styles['cosmic-orb']} ${styles['orb-violet-1']}`}></div>
-        <div className={`${styles['cosmic-orb']} ${styles['orb-amber-1']}`}></div>
-        <div className={`${styles['cosmic-orb']} ${styles['orb-indigo-2']}`}></div>
-        <div className={`${styles['cosmic-orb']} ${styles['orb-amber-2']}`}></div>
-        <div className={styles['orb-subtle-mesh']}></div>
-      </div>
+const ORBS = [styles.orbViolet1, styles.orbAmber1, styles.orbIndigo2, styles.orbAmber2];
 
-      <div className={styles['app-viewport']}>
-        <main className={styles['content-constraint']}>
-          {children}
-        </main>
-        <Footer />
-        <ScrollToTopButton />
-      </div>
-    </>
-  );
-}
+export const Layout = ({ children }: { children: ReactNode }) => (
+  <>
+    <div className={styles.cosmicLayer}>
+      {ORBS.map((orb, i) => (
+        <div key={i} className={`${styles.cosmicOrb} ${orb}`} />
+      ))}
+      <div className={styles.orbSubtleMesh} />
+    </div>
+
+    <div className={styles.appViewport}>
+      <main className={styles.contentConstraint}>{children}</main>
+      <Footer />
+      <ScrollToTopButton />
+    </div>
+  </>
+);

@@ -13,102 +13,97 @@ type HistoryItem = {
   imageSrc: string;
 };
 
+const HISTORY = history as HistoryItem[];
+
 const getHistoryLogo = (fileName: string) => `/history/${fileName}`;
 
-export const Timeline = () => {
-  const items = history as HistoryItem[];
+const Icon = ({ name, style }: { name: string; style?: React.CSSProperties }) => (
+  <span className="material-symbols-outlined" style={style}>
+    {name}
+  </span>
+);
 
-  return (
-    <section className={styles['portfolio-section']} id="experience">
-      <div className={styles['section-head']}>
-        <span className={styles['eyebrow-chip']}>
-          <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>
-            history_edu
-          </span>
-          EVOLUTION & EXPERIENCE
-        </span>
-        <h2 className={styles['section-title']}>Career Milestones & Experience</h2>
-        <p className={styles['section-desc']}>
-          A progression grounded in user centric problem solving, elevated across end to end product engineering and highly performant web applications.
-        </p>
-      </div>
+export const Timeline = () => (
+  <section className={styles.portfolioSection} id="experience">
+    <div className={styles.sectionHead}>
+      <span className={styles.eyebrowChip}>
+        <Icon name="history_edu" style={{ fontSize: '16px' }} />
+        EVOLUTION & EXPERIENCE
+      </span>
+      <h2 className={styles.sectionTitle}>Career Milestones & Experience</h2>
+      <p className={styles.sectionDesc}>
+        A progression grounded in user centric problem solving, elevated across end to end
+        product engineering and highly performant web applications.
+      </p>
+    </div>
 
-      <div className={styles['career-timeline-deck']}>
-        <div className={styles['vertical-luminescence-spine']}></div>
+    <div className={styles.careerTimelineDeck}>
+      <div className={styles.verticalLuminescenceSpine} />
 
-        {items.map((item, index) => (
-          <div key={`${item.organisation}-${index}`} className={styles['timeline-milestone']}>
-            <div className={styles['spine-orb-anchor']}></div>
-            <div className={styles['glass-milestone-card']}>
-              <div className={styles['milestone-brand-line']}>
-                <div className={styles['milestone-company-info']}>
+      {HISTORY.map((item, index) => {
+        const bullets = item.bullets?.length ? item.bullets : item.description ? [item.description] : [];
+
+        return (
+          <div key={`${item.organisation}-${index}`} className={styles.timelineMilestone}>
+            <div className={styles.spineOrbAnchor} />
+            <div className={styles.glassMilestoneCard}>
+              <div className={styles.milestoneBrandLine}>
+                <div className={styles.milestoneCompanyInfo}>
                   <img
                     alt={`${item.organisation} Logo`}
-                    className={styles['company-logo-avatar']}
+                    className={styles.companyLogoAvatar}
                     src={getHistoryLogo(item.imageSrc)}
                   />
                   <div>
-                    <span className={styles['milestone-title-text']}>{item.role}</span>
-                    <span className={styles['milestone-company-name']}>
-                      {' '}@ {item.organisation}
-                    </span>
+                    <span className={styles.milestoneTitleText}>{item.role}</span>
+                    <span className={styles.milestoneCompanyName}> @ {item.organisation}</span>
                   </div>
                 </div>
-                <span className={styles['milestone-tenure-tag']}>
+                <span className={styles.milestoneTenureTag}>
                   {item.startDate} — {item.endDate}
                 </span>
               </div>
 
-              {item.bullets && item.bullets.length > 0 ? (
-                <ul className={styles['milestone-bullets']}>
-                  {item.bullets.map((point, i) => (
+              {bullets.length > 0 && (
+                <ul className={styles.milestoneBullets}>
+                  {bullets.map((point, i) => (
                     <li key={i}>{point}</li>
                   ))}
                 </ul>
-              ) : (
-                item.description && (
-                  <ul className={styles['milestone-bullets']}>
-                    <li>{item.description}</li>
-                  </ul>
-                )
               )}
 
-              <div
-                className={styles['arsenal-badge-flow']}
-                style={{
-                  marginTop: '1.5rem',
-                  paddingTop: '1.25rem',
-                  borderTop: '1px solid rgba(255,255,255,0.06)',
-                }}
-              >
+              <div className={styles.experienceBadgeFlow}>
                 {item.experiences.map((exp, i) => (
-                  <span key={exp} className={styles['frosted-badge']}>
-                    {i === 0 && <span className={styles['badge-amber-dot']}></span>}
+                  <span key={exp} className={styles.frostedBadge}>
+                    {i === 0 && <span className={styles.badgeAmberDot} />}
                     {exp}
                   </span>
                 ))}
               </div>
             </div>
           </div>
-        ))}
+        );
+      })}
 
-        <div className={styles['illuminated-pivot-block']}>
-          <div className={styles['pivot-header']}>
-            <span
-              className="material-symbols-outlined"
-              style={{ color: 'var(--color-secondary)', fontSize: '22px' }}
-            >
-              switch_access_shortcut
-            </span>
-            <span className={styles['pivot-title']}>
-              THE PIVOT: FROM TEACHING TO SOFTWARE ENGINEERING
-            </span>
-          </div>
-          <p className={styles['pivot-body']}>
-            Before entering software engineering, I spent seven years in teaching, with my background in design. Making the transition was an incredibly enjoyable journey—it was the exact space where my passion for problem-solving, technology, and creativity finally came together. Whether I am architecting full-stack workflows or designing intuitive user interfaces, the core drive remains the same: building systems that are logical, resilient, and beautifully crafted.
-          </p>
+      <div className={styles.illuminatedPivotBlock}>
+        <div className={styles.pivotHeader}>
+          <Icon
+            name="switch_access_shortcut"
+            style={{ color: 'var(--color-secondary)', fontSize: '22px' }}
+          />
+          <span className={styles.pivotTitle}>
+            THE PIVOT: FROM TEACHING TO SOFTWARE ENGINEERING
+          </span>
         </div>
+        <p className={styles.pivotBody}>
+          Before entering software engineering, I spent seven years in teaching, with my
+          background in design. Making the transition was an incredibly enjoyable journey—it was
+          the exact space where my passion for problem-solving, technology, and creativity finally
+          came together. Whether I am architecting full-stack workflows or designing intuitive user
+          interfaces, the core drive remains the same: building systems that are logical, resilient,
+          and beautifully crafted.
+        </p>
       </div>
-    </section>
-  );
-}
+    </div>
+  </section>
+);

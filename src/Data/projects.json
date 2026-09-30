@@ -66,6 +66,7 @@
     "description": "A project focused on creating a react application within a 2 day time frame, using a CatAPI to create a cat shelter theme website to support the adoption of more cats.",
     "languages": ["React", "Javascript", "HTML", "CSS / SCSS", "Node.js", "Figma"],
     "demo": "https://cattree.onrender.com/",
+    "liveDemo": "https://cattree.onrender.com/",
     "source": "https://github.com/mel-muhina/CatTree",
     "imageSrc": "cattree.JPG",
     "category": "Fullstack"
@@ -88,7 +89,7 @@
     "demo": "https://mel-muhina.github.io/draftBanking/",
     "liveDemo": "https://mel-muhina.github.io/draftBanking/",
     "source": "https://github.com/mel-muhina/draftBanking",
-    "imageSrc": "draftbanking.jpg",
-    "category": "Fullstack"
+    "imageSrc": "draftBanking.webp",
+    "category": "Frontend"
   }
 ]

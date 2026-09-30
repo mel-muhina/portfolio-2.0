@@ -447,7 +447,6 @@ export const Hero = () => {
         </div>
       </a>
 
-      <div className={styles.bottomSeamlessFade} aria-hidden="true" />
     </section>
   );
 };

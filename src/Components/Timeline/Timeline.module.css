@@ -1,16 +1,16 @@
-.portfolio-section {
+.portfolioSection {
   padding: 2rem 0;
   position: relative;
 }
 
-.section-head {
+.sectionHead {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   margin-bottom: 2.75rem;
 }
 
-.section-title {
+.sectionTitle {
   font-size: clamp(2rem, 3.8vw, 2.75rem);
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -18,14 +18,14 @@
   line-height: 1.15;
 }
 
-.section-desc {
+.sectionDesc {
   font-size: 1.05rem;
   color: var(--color-text-muted);
   max-width: 680px;
   line-height: 1.65;
 }
 
-.eyebrow-chip {
+.eyebrowChip {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -37,13 +37,13 @@
   letter-spacing: 0.12em;
 }
 
-.career-timeline-deck {
+.careerTimelineDeck {
   position: relative;
   margin-top: 3.5rem;
   padding-left: 2.5rem;
 }
 
-.vertical-luminescence-spine {
+.verticalLuminescenceSpine {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -53,12 +53,12 @@
   box-shadow: 0 0 12px var(--color-primary-glow);
 }
 
-.timeline-milestone {
+.timelineMilestone {
   position: relative;
   margin-bottom: 3.5rem;
 }
 
-.spine-orb-anchor {
+.spineOrbAnchor {
   position: absolute;
   left: -2.5rem;
   top: 6px;
@@ -70,7 +70,7 @@
   box-shadow: 0 0 16px var(--color-primary-glow);
 }
 
-.glass-milestone-card {
+.glassMilestoneCard {
   background: var(--bg-glass-card);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -83,7 +83,7 @@
   transition: all 0.3s ease;
 }
 
-.glass-milestone-card:hover {
+.glassMilestoneCard:hover {
   border-color: rgba(210, 187, 255, 0.45);
   transform: translateY(-2px);
   box-shadow:
@@ -91,7 +91,7 @@
     0 0 25px -8px var(--color-primary-glow);
 }
 
-.milestone-brand-line {
+.milestoneBrandLine {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -100,13 +100,13 @@
   margin-bottom: 1.25rem;
 }
 
-.milestone-company-info {
+.milestoneCompanyInfo {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.company-logo-avatar {
+.companyLogoAvatar {
   width: 44px;
   height: 44px;
   border-radius: var(--radius-sm);
@@ -115,19 +115,19 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
-.milestone-title-text {
+.milestoneTitleText {
   font-size: 1.35rem;
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.01em;
 }
 
-.milestone-company-name {
+.milestoneCompanyName {
   color: var(--color-secondary);
   font-weight: 600;
 }
 
-.milestone-tenure-tag {
+.milestoneTenureTag {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   color: var(--color-text-muted);
@@ -137,7 +137,7 @@
   border-radius: var(--radius-pill);
 }
 
-.milestone-bullets {
+.milestoneBullets {
   list-style-type: none;
   padding-left: 0;
   display: flex;
@@ -148,12 +148,12 @@
   line-height: 1.68;
 }
 
-.milestone-bullets li {
+.milestoneBullets li {
   position: relative;
   padding-left: 1.4rem;
 }
 
-.milestone-bullets li::before {
+.milestoneBullets li::before {
   content: '▹';
   position: absolute;
   left: 0;
@@ -161,7 +161,7 @@
   font-size: 1rem;
 }
 
-.illuminated-pivot-block {
+.illuminatedPivotBlock {
   margin-top: 2.75rem;
   background: linear-gradient(135deg, rgba(124, 58, 237, 0.18) 0%, rgba(255, 188, 114, 0.09) 100%);
   backdrop-filter: blur(28px);
@@ -174,14 +174,14 @@
     inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
-.pivot-header {
+.pivotHeader {
   display: flex;
   align-items: center;
   gap: 0.6rem;
   margin-bottom: 0.85rem;
 }
 
-.pivot-title {
+.pivotTitle {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   font-weight: 700;
@@ -190,20 +190,28 @@
   text-transform: uppercase;
 }
 
-.pivot-body {
+.pivotBody {
   font-size: 1rem;
   color: #dfd9ee;
   line-height: 1.75;
 }
 
-/* Reusing these from Arsenal for the tech tags */
-.arsenal-badge-flow {
+.arsenalBadgeFlow {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
 }
 
-.frosted-badge {
+.experienceBadgeFlow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.frostedBadge {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   background: rgba(255, 255, 255, 0.04);
@@ -218,7 +226,7 @@
   cursor: default;
 }
 
-.frosted-badge:hover {
+.frostedBadge:hover {
   background: rgba(124, 58, 237, 0.18);
   border-color: var(--color-primary, #d2bbff);
   color: #ffffff;
@@ -226,7 +234,7 @@
   box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
 }
 
-.badge-amber-dot {
+.badgeAmberDot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -235,18 +243,19 @@
 }
 
 @media screen and (max-width: 650px) {
-  .glass-milestone-card {
+  .glassMilestoneCard {
     padding: 1rem;
   }
 
-  .career-timeline-deck {
+  .careerTimelineDeck {
     padding-left: 0;
   }
-  .spine-orb-anchor {
+
+  .spineOrbAnchor {
     display: none;
   }
 
-  .vertical-luminescence-spine {
+  .verticalLuminescenceSpine {
     display: none;
   }
 }
